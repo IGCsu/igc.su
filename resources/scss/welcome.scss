@@ -1,0 +1,82 @@
+body {
+	font-family: 'Nunito', sans-serif;
+	padding: 0 !important;
+	.min-h-screen { background: #202225 !important; }
+}
+
+#logo {
+	padding-left: 5rem;
+	position: relative;
+	width: fit-content;
+	user-select: none;
+	margin: 0 auto;
+
+	> span {
+		height: 10rem;
+		position: absolute;
+		cursor: pointer;
+		transition: 0.3s;
+		left: -3rem;
+		outline: none;
+		-webkit-tap-highlight-color: transparent;
+
+		&.deg-0 { transform: rotate(0deg); }
+		&.deg-120 { transform: rotate(480deg); }
+		&.deg-240 { transform: rotate(960deg); }
+
+		> img {
+			filter: drop-shadow(0px 0px 1px #fff);
+			height: 100%;
+		}
+		> i {
+			position: absolute;
+			transition: 0.2s;
+			&.shadow-yellow {
+				box-shadow: -15px 0px 100px 61px #ecea9c30;
+				top: 50%;
+				right: 0;
+			}
+			&.shadow-blue {
+				box-shadow: 15px -15px 100px 61px #81d3df30;
+				bottom: 0;
+				left: 23%;
+			}
+			&.shadow-pink {
+				box-shadow: 15px 15px 100px 61px #ffaad530;
+				left: 20%;
+				top: 0;
+			}
+		}
+		&:hover > .shadow-yellow { box-shadow: -15px 0px 100px 61px #ecea9c40; }
+		&:hover > .shadow-blue { box-shadow: 15px -15px 100px 61px #81d3df40; }
+		&:hover > .shadow-pink { box-shadow: 15px 15px 100px 61px #ffaad540; }
+
+	}
+
+	> h1 {
+		font-size: 7rem;
+		font-weight: 900;
+		display: inline-block;
+		text-shadow: 0px 0px 3px #fff;
+	}
+
+}
+
+.links {
+	text-align: center;
+	padding: 10px;
+
+	span {
+		font-size: 14px;
+		opacity: 0.8;
+	}
+
+	a {
+		transition: 0.2s;
+		white-space: nowrap;
+		font-size: 18px;
+		margin: 0 9px;
+		&:hover { color: #70aacf; }
+	}
+
+}

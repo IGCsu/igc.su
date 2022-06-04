@@ -1,0 +1,94 @@
+body {
+  font-family: "Nunito", sans-serif;
+  padding: 0 !important;
+}
+body .min-h-screen {
+  background: #202225 !important;
+}
+
+#logo {
+  padding-left: 5rem;
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin: 0 auto;
+}
+#logo > span {
+  height: 10rem;
+  position: absolute;
+  cursor: pointer;
+  transition: 0.3s;
+  left: -3rem;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+#logo > span.deg-0 {
+  transform: rotate(0deg);
+}
+#logo > span.deg-120 {
+  transform: rotate(480deg);
+}
+#logo > span.deg-240 {
+  transform: rotate(960deg);
+}
+#logo > span > img {
+  filter: drop-shadow(0px 0px 1px #fff);
+  height: 100%;
+}
+#logo > span > i {
+  position: absolute;
+  transition: 0.2s;
+}
+#logo > span > i.shadow-yellow {
+  box-shadow: -15px 0px 100px 61px rgba(236, 234, 156, 0.1882352941);
+  top: 50%;
+  right: 0;
+}
+#logo > span > i.shadow-blue {
+  box-shadow: 15px -15px 100px 61px rgba(129, 211, 223, 0.1882352941);
+  bottom: 0;
+  left: 23%;
+}
+#logo > span > i.shadow-pink {
+  box-shadow: 15px 15px 100px 61px rgba(255, 170, 213, 0.1882352941);
+  left: 20%;
+  top: 0;
+}
+#logo > span:hover > .shadow-yellow {
+  box-shadow: -15px 0px 100px 61px rgba(236, 234, 156, 0.2509803922);
+}
+#logo > span:hover > .shadow-blue {
+  box-shadow: 15px -15px 100px 61px rgba(129, 211, 223, 0.2509803922);
+}
+#logo > span:hover > .shadow-pink {
+  box-shadow: 15px 15px 100px 61px rgba(255, 170, 213, 0.2509803922);
+}
+#logo > h1 {
+  font-size: 7rem;
+  font-weight: 900;
+  display: inline-block;
+  text-shadow: 0px 0px 3px #fff;
+}
+
+.links {
+  text-align: center;
+  padding: 10px;
+}
+.links span {
+  font-size: 14px;
+  opacity: 0.8;
+}
+.links a {
+  transition: 0.2s;
+  white-space: nowrap;
+  font-size: 18px;
+  margin: 0 9px;
+}
+.links a:hover {
+  color: #70aacf;
+}
