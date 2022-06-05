@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\DiscordController;
 
 use GuzzleHttp;
-use Request;
 use Auth;
 use DB;
 
