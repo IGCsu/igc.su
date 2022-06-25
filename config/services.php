@@ -33,7 +33,7 @@ return [
 	'discord' => [
 		'client_id' => env('DISCORD_CLIENT_ID'),
 		'client_secret' => env('DISCORD_CLIENT_SECRET'),
-		'redirect' => 'https://igc.su/auth/discord/callback',
+		'redirect' => env('DISCORD_REDIRECT_URI'),
 		'allow_gif_avatars' => true,
 		'avatar_default_extension' => 'jpg',
 	],

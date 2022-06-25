@@ -135,7 +135,7 @@ class DiscordController extends Controller {
 
 		if(!empty($guild)) return json_decode($guild->data, true);
 
-		$client = $this->getGuzzleClass();
+        $client = DiscordController::getGuzzleClass();
 
 		$members = json_decode($client->get('https://discord.com/api/v9/guilds/433242520034738186/members?limit=1000')->getBody(), true);
 		$channels = json_decode($client->get('https://discord.com/api/v9/guilds/433242520034738186/channels')->getBody(), true);
@@ -174,8 +174,8 @@ class DiscordController extends Controller {
 
 	/**
 	 * Возвращает класс GuzzleHttp\Client
-	 * @return Client
-	 */
+	 * @return GuzzleHttp\Client
+     */
 	public static function getGuzzleClass(){
 		return new GuzzleHttp\Client([
 			'headers' => [
