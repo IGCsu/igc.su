@@ -1,0 +1,274 @@
+/* This CSS supports a legacy Online Banking feature, SBA Tour. */
+/* This file includes both the carousel CSS (Owl Carousel) and custom CSS overrides. */
+
+/* 
+ * 	Core Owl Carousel CSS File
+ *	v1.3.3
+ */
+
+/* clearfix */
+.owl-carousel .owl-wrapper:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+/* display none until init */
+.owl-carousel{
+	display: none;
+	position: relative;
+	width: 100%;
+	-ms-touch-action: pan-y;
+}
+.owl-carousel .owl-wrapper{
+	display: none;
+	position: relative;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+}
+.owl-carousel .owl-wrapper-outer{
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+.owl-carousel .owl-wrapper-outer.autoHeight{
+	-webkit-transition: height 500ms ease-in-out;
+	-moz-transition: height 500ms ease-in-out;
+	-ms-transition: height 500ms ease-in-out;
+	-o-transition: height 500ms ease-in-out;
+	transition: height 500ms ease-in-out;
+}
+	
+.owl-carousel .owl-item{
+	float: left;
+}
+.owl-controls .owl-page,
+.owl-controls .owl-buttons div{
+	cursor: pointer;
+}
+.owl-controls {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* mouse grab icon */
+.grabbing { 
+    cursor:url(grabbing.html) 8 8, move;
+}
+
+/* fix */
+.owl-carousel  .owl-wrapper,
+.owl-carousel  .owl-item{
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility:    hidden;
+	-ms-backface-visibility:     hidden;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+}
+
+/*
+* 	Owl Carousel Owl Demo Theme 
+*	v1.3.3
+*/
+
+.owl-theme .owl-controls{
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* Styling Next and Prev buttons */
+
+.owl-theme .owl-controls .owl-buttons div{
+	color: #FFF;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;/*IE7 life-saver */
+	margin: 5px;
+	padding: 3px 10px;
+	font-size: 12px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	background: #869791;
+	filter: Alpha(Opacity=50);/*IE7 fix*/
+	opacity: 0.5;
+}
+/* Clickable class fix problem with hover on touch devices */
+/* Use it for non-touch hover action */
+.owl-theme .owl-controls.clickable .owl-buttons div:hover{
+	filter: Alpha(Opacity=100);/*IE7 fix*/
+	opacity: 1;
+	text-decoration: none;
+}
+
+/* Styling Pagination*/
+
+.owl-theme .owl-controls .owl-page{
+	display: inline-block;
+	zoom: 1;
+	*display: inline;/*IE7 life-saver */
+}
+.owl-theme .owl-controls .owl-page span{
+	display: block;
+	width: 12px;
+	height: 12px;
+	margin: 5px 7px;
+	filter: Alpha(Opacity=50);/*IE7 fix*/
+	opacity: 0.5;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background: #869791;
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span{
+	filter: Alpha(Opacity=100);/*IE7 fix*/
+	opacity: 1;
+}
+
+/* If PaginationNumbers is true */
+
+.owl-theme .owl-controls .owl-page span.owl-numbers{
+	height: auto;
+	width: auto;
+	color: #FFF;
+	padding: 2px 10px;
+	font-size: 12px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+
+/* preloading images */
+.owl-item.loading{
+	min-height: 150px;
+	background: url(AjaxLoader.html) no-repeat center center
+}
+
+#tour {
+    margin: 30px auto;
+    max-width: 750px;
+    width: 100%;
+}
+h1, .h1 { font-size: 3.1em; line-height: 1.15em; }
+.h2 {
+  color: #009ee5;
+  font-size: 1em;
+  letter-spacing: 0.04em;
+  margin: 22px 0 6px;
+}
+img { max-width: 95%; }
+.col-xs-6 > h3:first-child {
+    margin-top: 0;
+}
+.button {
+    font-family: "StagSansLight",sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.03em;
+    padding: 0.75em 1.25em;
+    -webkit-text-stroke: 0.35px;
+    margin-top: 8px;
+}
+#first-slide p { margin-top: 20px; }
+p.emphasis {
+    background: #def3fc none repeat scroll 0 0;
+    padding: 10px 20px;
+}
+.owl-carousel .owl-item {
+    /*height: 380px;*/
+}
+.owl-pagination {
+    margin-top: 15px;
+}
+.owl-theme .owl-controls {
+  margin: 0 15px;
+  position: absolute;
+  width: 96%;
+}
+.owl-theme .owl-controls .owl-page span {
+    border-radius: 16px;
+    height: 9px;
+    width: 9px;
+    margin: 5px 9px;
+}
+.owl-theme .owl-controls .owl-buttons {
+	margin-top: -4rem;
+}
+.owl-theme .owl-controls .owl-buttons div {
+    background-color: #1973b8;
+    border: medium none;
+    border-radius: 1px;
+    color: #fff !important;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    font-family: "BentonSansBBVA Bold","Helvetica Neue",Arial,Helvetica,sans-serif;
+    font-size: 1.4rem;
+    margin: 0;
+    min-width: 9.2rem;
+    opacity: 1;
+    overflow: visible;
+    padding: 1rem 1.8rem;
+    text-align: center;
+    transition: background-color 100ms linear 0s;
+    white-space: inherit;
+    width: auto;
+}
+
+.owl-theme .owl-controls .owl-buttons div:hover, .owl-theme .owl-controls .owl-buttons div:focus, .owl-theme .owl-controls .owl-buttons div:active, .owl-theme .owl-controls .owl-buttons div.active {
+    background-color: #072146;
+    border-bottom: medium none !important;
+    color: #fff !important;
+}
+.owl-theme .owl-controls .owl-buttons > div:first-child {
+    display: none;
+}
+.owl-theme .owl-controls .owl-buttons .owl-next {
+    float: right;
+}
+.owl-theme .owl-controls .owl-buttons div.disabled {
+    display: none;
+}
+/*.owl-next:after {
+    background: rgba(0, 0, 0, 0) linear-gradient(-45deg, #00569e 0px, #0079c1 100%) repeat scroll 0 0;
+    border-top: 1px solid #00569e;
+    border-right: 1px solid #00569e;
+    content: " ";
+    height: 1.625rem;
+    right: -0.325rem;
+    position: absolute;
+    transform: rotate(45deg) skew(16deg, 19deg);
+    width: 19px;
+}
+.owl-prev:after {
+    background: rgba(0, 0, 0, 0) linear-gradient(-45deg, #00569e 0px, #0079c1 100%) repeat scroll 0 0;
+    border-bottom: 1px solid #00569e;
+    border-left: 1px solid #00569e;
+    content: " ";
+    height: 1.725rem;
+    left: -0.3rem;
+    position: absolute;
+    transform: rotate(45deg) skew(16deg, 19deg);
+    width: 17px;
+}*/
+.hideSlide {
+  display: none !important;
+}
+/* Firefox-Specific Fixes */
+/*@-moz-document url-prefix() {
+    .owl-theme .owl-controls .owl-buttons div { padding: 0.72rem 0.625rem; }
+    .owl-next:after { right: -0.35rem; }
+}*/
+
+/* Fixes to accomodate OLB iframe sizing */
+.owl-item .h1 {
+    font-size: 2.8em;
+    line-height: 1.1em;
+}

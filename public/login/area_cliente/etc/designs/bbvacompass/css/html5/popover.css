@@ -1,0 +1,428 @@
+/* BBVA COMPASS (POPOVER) v01 -  27/02/14  */
+html, body, div, span, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, figure, footer, header, hgroup, menu, nav, section, menu, time, mark, audio, video {
+margin:0;
+padding:0;
+border:0;
+outline:0;
+font-size:100%;
+vertical-align:baseline;
+background:transparent;}
+
+.ie7 video {display:block}
+.ie8 video {display:block}
+
+article, aside, figure, footer, header,hgroup, nav, section {display:block;}
+
+nav ul {list-style:none;}
+
+blockquote, q { quotes:none;}
+
+blockquote:before, blockquote:after,
+q:before, q:after { content:''; content:none; }
+
+a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
+
+ins { background-color:#ff9; color:#000; text-decoration:none; }
+
+mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold;}
+
+del { text-decoration: line-through; }
+sup {font-size: 70% !important}
+
+abbr[title], dfn[title] { border-bottom:1px dotted #000; cursor:help; }
+
+/* A las tablas hay que ponerle cellspacing="0" */
+table {border-collapse:collapse; border-spacing:0; }
+
+hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0;}
+
+input, select { vertical-align:middle;}
+
+/* FIN RESET para HTLM5 */
+
+
+/*  GENERALES  */
+
+html { overflow-y: scroll; }
+
+body { font:13px sans-serif; *font-size:small; *font:x-small; line-height:1.82;}
+
+select, input, textarea { color:#444; }
+
+table { font-size:inherit; font:100%; }
+
+select, input, textarea { font:99% sans-serif; }
+
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+h1,h2,h3,h4,h5,h6 { font-weight: bold; text-rendering: optimizeLegibility;}
+
+html { -webkit-font-smoothing: antialiased;}
+
+a:hover, a:active { outline: none; }
+
+ul,ol {margin:0; padding:0; list-style:none; border:none;}
+
+small { font-size:85%; }
+
+strong, th { font-weight: bold; }
+
+td, td img { vertical-align:top; }
+
+sub,sup {font-size: smaller; }
+
+sub { vertical-align: sub;}
+
+sup { vertical-align: super;}
+
+::-moz-selection{ background: #e7f7ff; color:#fff; text-shadow: none;}
+
+::selection { background:#e7f7ff; color:#fff; text-shadow: none; }
+
+a:link { -webkit-tap-highlight-color: #e7f7ff; }
+
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+pre {
+padding: 15px;
+white-space: pre; /* CSS2 */
+white-space: pre-wrap; /* CSS 2.1 */
+white-space: -o-pre-wrap; /* Opera 7 */
+white-space: -pre-wrap; /* Opera 4-6 */
+white-space: pre-line; /* CSS 3 (y 2.1) */
+word-wrap: break-word; /* IE */}
+
+
+
+/* This font reference is deprecated. */
+/*@font-face {
+font-family: 'Bbva Web';
+src: url('../fonts/bbvaweb-book.eot?#iefix') format('embedded-opentype'),
+url('../fonts/bbvaweb-book.woff') format('woff'),
+url('../fonts/bbvaweb-book.ttf') format('truetype'),
+url('../fonts/bbvaweb-book.svg#svgFontName') format('svg');
+}*/
+
+
+
+/*  FORMULARIOS  */
+
+
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkcaja"] { vertical-align: bottom; *vertical-align: baseline; }
+.ie6 input { vertical-align: text-bottom; }
+button {  width: auto; overflow: visible; }
+/* CURSOR en elementos  */  input[type=button], input[type=submit], button { cursor: pointer; }
+
+
+
+/* GENERALES NO SEMANTICAS */
+
+.img_rep { display:block; text-indent:-999em; overflow:hidden; background-repeat: no-repeat; }
+
+.oculto { display:none; visibility:hidden; }
+.oculto_esp { display:none !important; visibility:hidden; }
+
+.oculto_parcial { position:absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px); }
+
+.invisible { visibility: hidden; }
+
+ /* Clearfix */
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; } /* Ocultos para IE-mac \*/
+.clearfix { display: block; }
+.clearfix_ultimate {overflow: auto;height: 1%;}
+ /* Fin Clearfix */
+
+
+
+/* ATENCION: ESPACIO PARA LOS ESTILOS PROPIOS DE CADA PROYECTO */
+/* ATENCION: ESPACIO PARA LOS ESTILOS PROPIOS DE CADA PROYECTO */
+
+
+/**** GLOBAL ****/
+
+body {
+color:#000;
+text-align:center;
+font-family:Arial,Helvetica,"Times New Roman",verdana, serif;
+background:#fff !important}
+
+.mask#image_promo_c {height:400px !important}
+#thumb_list {width: 800px !important;}
+#popup_window {width: 100%;}
+#popup_window.help_popup {width: 700px !important;}
+#popup_window.popup_w_iframe {width: 972px !important;}
+.ie7 #popup_window.popup_w_iframe {width: 998px !important;}
+#thumb_list.promo_module { width:400px !important;}
+#promo_popup  {width: 400px !important;}
+/*#help_list  {width: 400px !important;}*/
+#help_list h2 strong {font-size: 90%;font-weight: normal}
+#help_list h2 span {color:#666;}
+#popup_iframe_w  {width: 960px !important;text-align: left}
+#popup_iframe_w .header_popup {width: 973px !important;text-align: left;margin-bottom: 0 !Important}
+#popup_iframe_w h2#h2_sec_02 {width: 972px !important;text-align: left}
+.ie7 #popup_iframe_w h2#h2_sec_02 {width: auto !important;margin-left:0}
+#popup_iframe_w h2 strong {font-size: 90%;font-weight: normal}
+#popup_iframe_w .form_tipo {width: 973px !important;text-align: left;padding-bottom: 8px !Important;margin-bottom: 4px !Important;border-bottom: 1px solid #ddd !Important}
+
+#popup_iframe_w h2 span {color:#666;}
+#promo_popup  .boton {outline: none}
+#popup_window  .boton {outline: none}
+#popup_window #caja_login { width: 400px !important;}
+
+
+#thumb_list.promo_module #caja_login {
+ width: 400px !important;}
+ .large_image_promo#image_promo {margin-top:15px}
+
+
+.legal_notice {top:-10px !Important !important;position:relative;padding-bottom:14px}
+.legal_notice p {color:#181818;line-height:150% !important;}
+#thumb_list,
+#popup_window  {
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        background: #fff;
+        -webkit-border-radius: 6px;
+         z-index:100000 !important;
+        border: 1px solid #536376;
+        -webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
+        -moz-box-shadow:  rgba(0,0,0,.6) 0px 2px 12px;;
+        padding: 14px 22px;
+        position: relative;
+        /*display: none;*/    }
+
+ #popup_w_02  {min-height:234px !important}
+ #popup_w_02 .fila#med_pdfcode {position:relative;padding-bottom:8px !important;padding-top:20px !important;padding-left:18px !Important}
+ .ie7  #popup_w_02 .fila#med_pdfcode {height:100px !important}
+ #popup_w_02 .clearfix#pdfcode {margin-left:-25px !Important}
+ .ie7  #popup_w_02 .clearfix#pdfcode {margin-left:5px !Important}
+ #popup_w_02 .clearfix#pdfcode label {color:#000 !important}
+ .form_tipo#email_ver_pdf {margin:10px 0  15px 0 !Important;padding:10px 0 !Important;height:auto !important;min-height:30px !Important}
+
+.ai_ph {display:none;}
+#iph_li {display:none}
+.fl {float:left !important}
+.f_r {float:right !important}
+.fn {float:none !important}
+.fce {float:none !important;margin:0 auto !important}
+.fce2 {float:none !important;margin:0 0 0 10px !important}
+
+h2 {color:#0099ee;font-size:22px;font-weight: normal;line-height:100%;padding: 15px 0 0 15px; }
+h2 { font-family: "Bbva Web", helvetica, arial;}
+h2 .sup {font-size:11px !important;}
+h3 {color:#151515;font-size:14px;font-weight: normal;}
+#lateral h3 {margin-bottom:2px}
+.salto {clear:both !Important}
+
+a:link, a:active, a:visited {color:#333;}
+a  {text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+
+
+
+span.select2 em {border:1px solid transparent;width:160px !important;overflow:hidden;display:block;font-style: normal}
+#managebills span.select2 em {border:1px solid transparent;width:240px !important;overflow:hidden;display:block;font-style: normal}
+
+
+select.select2 {
+		position:relative;
+		z-index:10;
+		margin:0 0 0 10px;
+		width:227px;
+		height:25px !important;
+		line-height:16px;}
+
+.ie7 .ficha select.select2#accounts {left:64px !important;top:2px !important}
+.ie7 span.select2 em {border:1px solid transparent;width:160px !important;overflow:visible !Important;display:block;font-style: normal}
+.ie7 select.select2 {overflow:visible !important;width:400px !important}
+.ie7 .ficha select.select2 {overflow:visible !important;width:auto !important}
+.ie7 #managebills select.select2 {overflow:visible !important;width:auto !important}
+
+span.select2 {
+	position:absolute;
+	bottom:0;
+	left:0;
+	color:#0066BB !important;
+	top:-3px;
+	overflow:hidden;
+	float:left;
+	width:200px;
+	background:url(../img/fondo_de_combo.html) no-repeat 0 0 !important;
+	height:25px;
+	line-height:25px;
+	text-indent:10px;
+	cursor:default;
+	z-index:1;	}
+span.select em {	color:#0066BB  !important; }
+span.select  {	color:#0066BB  !important; }
+span.select2  {	color:#0066BB  !important; }
+span.select2 em  {	color:#0066BB  !important; }
+span.inactivo em {	color:#99CCEE  !important; }
+
+
+ #popup_w_02 .formtipo .fila .tipolabel {margin-left:-66px !important}
+ .ie7  #popup_w_02 .formtipo .fila .tipolabel {margin-left:0 !important;position:relative;left:-36px !important}
+  .ie7  #popup_w_02 .formtipo .fila input {margin-left:-22px !important}
+
+ #popup_w.activatetext .formtipo .fila .tipolabel,
+ #popup_w.onepin .formtipo .fila .tipolabel {margin-left:-66px !important}
+ .ie7   #popup_w.activatetext  .formtipo .fila .tipolabel,
+ .ie7   #popup_w.onepin  .formtipo .fila .tipolabel {margin-left:0 !important;position:relative;left:-36px !important}
+  .ie7   #popup_w.activatetext .formtipo .fila input,
+  .ie7   #popup_w.onepin .formtipo .fila input {margin-left:-22px !important}
+ #popup_w.activatetext   .tipo_peq,
+ #popup_w.onepin   .tipo_peq {width:40px !important;}
+.ie7  #popup_w .tipo_peq {width:40px !important;margin-right:10px;}
+
+
+/* (EIN)  .ie7 .form_tipo {width:582px !important;margin-left:-100px}*/
+.ie7 #help_items .form_tipo {	margin-left:0;overflow:scroll;overflow-x: hidden !Important}
+.ie7 .contact_us #editapayment .form_tipo {width:582px !important;margin-left:-100px}
+.ie9 .help_popup#popup_window .faqs_selector {right:-20px;top:24px !important}
+.ie7 .help_popup#popup_window .faqs_selector {right:-20px !important;top:24px !important;position:absolute}
+.ie8 .help_popup#popup_window .faqs_selector {right:218px;top:24px !important}
+.ie7 .help_popup#popup_window .faqs_selector select.select2 {position:relative !Important;width:230px !Important;top:-10px !important}
+.help_popup#popup_window .faqs_selector {position: absolute;right:-118px;top:28px !important}
+
+#help_list {
+	position: relative !Important;
+	width:590px !Important;
+	text-align: left;
+}
+.header_popup {height:40px;border-bottom:1px solid #ddd;;width:702px !Important;padding-top:26px}
+@-moz-document url-prefix() { .form_tipo  {overflow-x: visible !Important} }
+@-moz-document url-prefix() { .help_popup#popup_window  .form_tipo  {overflow-x: hidden !Important} }
+.ie9 #help_items .form_tipo  {width:610px !Important;overflow-x: hidden !Important}
+.ie8 #help_items .form_tipo  {width:610px !Important;overflow-x: hidden !Important}
+
+
+
+/* (FFF) */
+ .ie7 .form_tipo {width:100% !important;position:relative !important;min-width:590px !Important; }
+#set_goal p {clear:both}
+ .ie7 .addBiller {margin-top:-4px !important;}
+.ie7 #close_x { width: 34px ; height: 23px; }
+.ie7 .help_popup#popup_window #h2_sec_02 {margin-left:0;position:relative !important}
+.ie7  #h2_sec_02 {margin-left:-100px;position:relative !important}
+.ie7  #help_items ul li p {position:relative !important }
+
+#help_items .form_tipo {
+	border:0 !important;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	height:670px;
+	width:100%;
+	margin-bottom:10px !important;
+	position:relative !important;
+}
+#help_items .form_tipo strong.strong_h3  {display:block;margin-left:15px;color:#333;font-size:14px;margin-top:10px}
+#help_items .form_tipo strong.strong_h3_no {display:inline !important;margin-left:0;color:#151515;font-size:12px;margin-top:10px}
+
+#help_items .fila {
+	padding:10px 5px 10px 14px !important;
+	width:100%;
+	background: #f8f8f8;
+	border-top:1px solid #d8d8d8;
+	border-bottom:1px solid #d8d8d8;
+	margin-top:10px
+}
+.ie7 #help_items .fila {padding:15px 5px 0px 14px !important;min-height:40px !Important;height:auto !Important}
+#help_items  .activar, #help_items  .desactivar  {margin-top:2px}
+#help_items .caja_abierta {
+	clear:both;
+	width:100%;
+	white-space: normal;
+}
+#help_items div.caja_abierta {padding:0 !important;border:0 }
+#help_items .fila label {width:auto !Important;float:none !important;display:inline !important;margin:0 !important;color:#000 !important;padding-right:8px !important}
+#help_items .fila span  {float:left !important;}
+#help_items .fila .cajaboton2 {float:right !important}
+#help_items .caja_abierta div.content_li {
+	padding-left:0 !important;
+	line-height: 180%;
+	display:block;font-style: normal;
+	padding-bottom: 10px;
+	padding-top:8px;
+	padding-right:10px;
+	border-bottom:1px solid #d8d8d8;
+	width:100%;
+}
+#help_items .caja_abierta div.content_li  ul.with_icons   {border-top:1px solid #e4e4e4;margin-top:8px !important;margin-bottom:6px !important;}
+#help_items .caja_abierta div.content_li  ul.with_icons li  {border-bottom:1px solid #e4e4e4;padding-bottom: 10px !Important;padding-top:0px !Important}
+#help_items .caja_abierta div.content_li  ul.with_icons li img {float:left;margin-right:10px;border:0 !important}
+#help_items .caja_abierta div.content_li  ul.with_icons li p {float:left;width:400px}
+#help_items .caja_abierta div.content_li  ul.lista_comun li {background:transparent url("../img/bullet.html") 10px 9px no-repeat !important;padding-left:24px}
+#help_items .caja_abierta div.content_li  ul.lista_comun li {line-height: 100%;}
+#help_items .caja_abierta div.content_li  ul.lista_comun li p {padding-top:0 !important}
+
+#help_items .caja_abierta div.content_li  p {padding-left:14px;padding-top:5px;line-height: 190%;padding-top:8px;padding-bottom:8px}
+#help_items .caja_abierta div.content_li  ul {margin:0 16px 5px 12px !important }
+#help_items .caja_abierta div.content_li  ul li img {float:left;margin-right:10px}
+#help_items .caja_abierta div.content_li  ul li {clear:both;margin-top:10px}
+#help_items .caja_abierta div.content_li img {padding: 20px 0; max-width: 650px; }
+#help_items .assistance strong {font-size: 15px;color:#333 !important}
+
+#help_items .assistance  {
+	display:block;
+	text-align: center;
+	width: 100%;
+	clear:both;
+	line-height: 140%;
+	padding-bottom:10px;
+	padding-top:14px;
+	color:#666;
+	border-top:1px solid #ddd;
+}
+#help_items .caja_abierta div.content_li  ul li p {display:block;float:left !important;padding:5px 0 0 0 !important;width:675px;font-style: normal;}
+#help_items  .cajaboton2 input {margin-left:0 !important}
+#help_items  .ac_enlace {left:5px !important;position:relative;color:#0066ba !important;width:500px}
+.link_tipo  {color:#0066ba !important;}
+#help_items p em {color:#525252;padding-right:10px;/*display:block;*/margin-bottom:5px}
+#help_items .caja-content {padding-left:0 !important;padding-right:0 !important}
+
+
+div.caja_cerrada, span.caja_cerrada {display:none}
+div.caja_abierta {display:block;background: #fff;border-top:1px solid #dedede;position:static !Important;top:-1px;z-index:2;padding:20px 20px 15px 44px;-moz-border-radius-bottomleft: 3px;
+-moz-border-radius-bottomright: 3px;
+-webkit-border-bottom-left-radius: 3px;
+-webkit-border-bottom-right-radius: 3px;}
+/* (fff) */
+span.caja_abierta {display:block ;}
+
+
+.acc_detail div.caja_abierta {border-top:0 !important}
+
+.ie7 div.caja_abierta {position:static;}
+.ie7 div.caja_abierta span.select{z-index:1 !important;	}
+
+strong.activar  {background:transparent url("../../../../../content/dam/bbva/usa/en/icon/boton_minmax_03.html") 0 0 no-repeat  !important;width:20px;height:20px;display:block;}
+strong.desactivar  {background:transparent url("../../../../../content/dam/bbva/usa/en/icon/boton_minmax_04.html") 0 0 no-repeat  !important;width:20px;height:20px;display:block;}
+a.rare span strong span {display:none}
+a.rare span strong.activar span {display:none}
+strong.desactivar span  {display:none}
+strong.activar  span{display:none}
+#m21 .goto {background: #fff;padding:10px;width:100%;border-top:1px solid #d8d8d8;display:block;float:none;display:block;}
+
+
+div.caja_cerrada2 {display:none}
+div.caja_abierta2 {display:block !important;background: #fff;border-top:1px solid #ccc;position:static !Important;top:-1px;z-index:2;padding:20px 20px 15px 44px;-moz-border-radius-bottomleft: 3px;
+-moz-border-radius-bottomright: 3px;
+-webkit-border-bottom-left-radius: 3px;
+-webkit-border-bottom-right-radius: 3px;}
+
+
+
+#close_x {
+        width: 24px; height: 23px;
+        overflow: hidden; line-height: 1000px;
+		background:url(../img/close.html) no-repeat right top;
+        display: block;
+        position: absolute; top: 5px; right: 5px; }

@@ -1,0 +1,26 @@
+.cq-editrollover-container{border:2px dashed #ccc}
+.cq-searchpromote-search{text-align:center}
+.cq-searchpromote-search #q{width:225px}
+.cq-searchpromote-results{min-height:100px}
+.cq-searchpromote-pagination{text-align:center}
+.cq-searchpromote-facet-checkboxlist{min-height:50px;height:auto;overflow:auto}
+.cq-searchpromote-facet-checkboxlist ul{list-style-type:none}
+.cq-searchpromote-facet-linklist ul{list-style-type:none}
+.cq-searchpromote-facet-linklist .cq-div-page a{font-style:italic}
+.cq-searchpromote-facet-nestedlist li{margin-left:20px}
+.cq-searchpromote-facet-nestedlist ul.parent{list-style-type:none}
+.cq-searchpromote-facet-nestedlist ul.children{list-style-type:circle;margin-bottom:10px}
+.cq-searchpromote-facet-nestedlist ul.selected{font-weight:bold}
+.cq-searchpromote-facet-ratings{height:70px;overflow:auto}
+.cq-searchpromote-facet-ranking-selected-value{float:right}
+.cq-searchpromote-facet-star-on{width:14px;height:14px;background:#fff url(default/stars.png) 0 0 no-repeat;float:left}
+.cq-searchpromote-facet-star-off{width:14px;height:14px;background:#fff url(default/stars.png) 0 -14px no-repeat;float:left}
+.cq-searchpromote-facet-color{height:70px;overflow:auto}
+.cq-searchpromote-colors-list{margin:0;padding:0 0 6px 1px;list-style-type:none}
+.cq-searchpromote-colors-list li{float:left;margin:3px 6px 3px 0;border:2px solid #fff;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;border-radius:8px}
+.cq-searchpromote-colors-zone{width:24px;height:24px;-moz-border-radius:8px;-webkit-border-radius:8px;-o-border-radius:8px;border-radius:8px;opacity:.8}
+input.cq-searchpromote-colors-checkbox{width:22px;height:22px;border:0;opacity:0}
+.cq-searchpromote-result-item{margin:0 20px;padding:20px 0;border-bottom:1px solid #aaa}
+.cq-searchpromote-result-item .thumbnail{float:left;width:20%}
+.cq-searchpromote-result-item .thumbnail img{width:128px;height:auto}
+.cq-searchpromote-results-item .description{float:left;width:80%}

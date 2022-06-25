@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1920px" height="1080px" viewBox="0 0 1920 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>6F03DF2A-3A53-4177-8F6A-5DA67E8144FB</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1920" height="1080"></rect>
+    </defs>
+    <g id="Standards" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="medium-blue">
+            <g>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="purpose-panel" fill="#2A86CA" xlink:href="#path-1"></use>
+                <polygon id="angle-1" fill="#5BBEFF" opacity="0.15" style="mix-blend-mode: multiply;" mask="url(#mask-2)" points="0 0 1920 0 0 1080"></polygon>
+                <polygon id="purpose-panel" fill="#5BBEFF" opacity="0.15" style="mix-blend-mode: multiply;" mask="url(#mask-2)" points="960 0 1920 0 1920 771.428571"></polygon>
+                <polygon id="angle-2" fill="#5BBEFF" opacity="0.15" style="mix-blend-mode: multiply;" mask="url(#mask-2)" points="1920 771.428571 1920 1080 0 1080"></polygon>
+                <polygon id="purpose-panel-copy" fill="#5BBEFF" opacity="0.151527519" style="mix-blend-mode: multiply;" mask="url(#mask-2)" points="0 0 960 0 0 1080"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
