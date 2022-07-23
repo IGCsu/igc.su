@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'TT Marxiana';
-    src: local('TT Marxiana Elzevir'), local('TT-Marxiana-Elzevir'),
-        url('TTMarxiana-Elzevir.woff2') format('woff2'),
-        url('TTMarxiana-Elzevir.woff') format('woff'),
-        url('TTMarxiana-Elzevir.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
