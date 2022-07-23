@@ -6,6 +6,26 @@
 
 // normalize.css
 @import '../css/normalize.css';
+* {
+    outline: none;
+}
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
+
+//====================================================================================================================//
+
+// Navbar
+@import 'navbar';
+
+body {
+    color: #eee;
+    text-align: left;
+    background-color: $dark0;
+    min-height: 200vh;
+}
+
+main {
+    padding-top: 3rem;
+}

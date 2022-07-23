@@ -5,18 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>IGC new</title>
+    <meta name="theme-color" content="#202225">
+    <meta name="msapplication-TileColor" content="#202225">
+    <meta name="yandex-tableau-widget" content="logo=https://igc.su/images/IGC.png, color=#202225" />
 
-    <link href="/css/app.css" rel="stylesheet">
+    @yield('meta')
+
+    @hasSection('navigation')
+        <title>@yield('title') | IGC new</title>
+    @else
+        <title>IGC new</title>
+    @endif
+
+    <link rel="icon" sizes="128x128" type="image/png" href="/images/favicon128.png">
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
 <body>
 
     <div id="app">
 
-        <header>
-
-        </header>
+        @include('components.navbar')
 
         <main>
             @yield('content')
@@ -24,7 +34,7 @@
 
     </div>
 
-    <script src="/js/app.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
 </body>
 </html>

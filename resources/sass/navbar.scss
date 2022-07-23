@@ -1,0 +1,76 @@
+.navbar {
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    background: $dark2;
+    border-bottom: 1px solid #0003;
+
+    padding-bottom: 0;
+    padding-top: 0;
+
+    img {
+        max-height: 3rem;
+    }
+
+    &-dark &-nav .nav-link {
+        color: #eee;
+    }
+
+    &-brand {
+        margin: 0;
+        padding: 0;
+    }
+
+    &-user {
+
+        .nav-link {
+            height: 3rem;
+
+            position: relative;
+
+            padding-left: 2.5rem !important;
+            line-height: 1rem;
+
+            img {
+                height: 2rem;
+                width: 2rem;
+
+                position: absolute;
+                left: 0;
+
+                border-radius: 50%;
+            }
+
+            span {
+                display: block;
+                font-weight: bold;
+            }
+
+            small {
+                display: block;
+            }
+
+            &::after {
+                display: none;
+            }
+
+        }
+
+    }
+
+    .dropdown-menu {
+        background: $dark3;
+
+        .dropdown-item {
+            color: #eee;
+
+            &:hover {
+                background-color: $dark2;
+            }
+        }
+
+    }
+
+}
