@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
 
-class DiscordController extends Controller {
+class AuthController extends Controller
+{
 
     /**
      * Перенаправляет запрос к Дискорду
      * @param Request $request
      */
-    public function redirectToDiscord(Request $request){
+    public function login(Request $request){
         $last = $request->server('HTTP_REFERER');
         if($last) session(['return' => $last]);
 
@@ -23,7 +24,7 @@ class DiscordController extends Controller {
     /**
      * Принятие запроса от Дискорда
      */
-    public function handleDiscordCallback(){
+    public function callback(){
         $user = Socialite::driver('discord')->stateless()->user();
 
         $finduser = User::where('discord_id', $user->id)->first();
@@ -45,6 +46,20 @@ class DiscordController extends Controller {
         Auth::login($finduser, true);
 
         return redirect(session('return', '/'));
+    }
+
+    /**
+     * Выход
+     * @param Request $request
+     */
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
 }

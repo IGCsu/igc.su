@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DiscordController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,7 @@ Route::get('/', function () {
 /**
  * Авторизация через Discord
  */
-Route::get('/login', [DiscordController::class, 'redirectToDiscord'])->name('login');
-Route::get('/auth/discord/callback', [DiscordController::class, 'handleDiscordCallback'])->name('handleDiscordCallback');
-Route::get('/closed', function(){ return view('closed'); })->name('closed');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/auth/discord/callback', [AuthController::class, 'callback'])->name('auth.callback');
+Route::get('/auth/closed', function(){ return view('welcome'); })->name('auth.closed');
