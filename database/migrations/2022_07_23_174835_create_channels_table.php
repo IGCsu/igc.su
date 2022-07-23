@@ -14,7 +14,7 @@ class CreateChannelsTable extends Migration
     public function up()
     {
         Schema::create('channels', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
             $table->integer('type');
             $table->integer('position');
             $table->text('name');
