@@ -13,4 +13,9 @@ class Member extends Model
         'roles' => 'array',
     ];
 
+    public function generate()
+    {
+
+    }
+
 }
