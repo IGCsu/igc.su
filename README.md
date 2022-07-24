@@ -33,7 +33,7 @@ POST `/api/channels` - Создание канала (не поддержива�
 DELETE `/api/channels/{id}` - [Удаление канала](#channelDelete)
 
 ---
-<h5 name="memberIndex">GET `/api/members` Получение всех участников сообщества</h5>
+<h5 name="memberIndex">GET <code>/api/members</code> Получение всех участников сообщества</h5>
 
 Params:
 - `page` - Страница (optional, default. 1)
@@ -84,7 +84,7 @@ Params:
 }
 ```
 ---
-<h5 name="memberShow">GET `/api/members/{id}` Получение участника сообщества</h5>
+<h5 name="memberShow">GET <code>/api/members/{id}</code> Получение участника сообщества</h5>
 
 ```json
 {
@@ -100,7 +100,7 @@ Params:
 }
 ```
 ---
-<h5 name="memberUpdate">PUT `/api/members/{id}` Обновление участника сообщества</h5>
+<h5 name="memberUpdate">PUT <code>/api/members/{id}</code> Обновление участника сообщества</h5>
 
 Params:
 - `name` - Имя участника в сообществе (required, string, max:1000)
@@ -121,7 +121,7 @@ Params:
 }
 ```
 ---
-<h5 name="roleIndex">GET `/api/roles` Получение всех ролей</h5>
+<h5 name="roleIndex">GET <code>/api/roles</code> Получение всех ролей</h5>
 
 Params:
 - `page` - Страница (optional, default. 1)
@@ -169,7 +169,7 @@ Params:
 }
 ```
 ---
-<h5 name="roleShow">GET `/api/roles/{id}` Получение роли</h5>
+<h5 name="roleShow">GET <code>/api/roles/{id}</code> Получение роли</h5>
 
 ```json
 {
@@ -182,7 +182,7 @@ Params:
 }
 ```
 ---
-<h5 name="roleUpdate">PUT `/api/roles/{id}` Обновление роли</h5>
+<h5 name="roleUpdate">PUT <code>/api/roles/{id}</code> Обновление роли</h5>
 
 Params:
 - `name` - Название роли (required, string, max:1000)
@@ -199,7 +199,7 @@ Params:
 }
 ```
 ---
-<h5 name="roleDelete">DELETE `/api/roles/{id}` Удаление роли</h5>
+<h5 name="roleDelete">DELETE <code>/api/roles/{id}</code> Удаление роли</h5>
 
 ```json
 {
@@ -212,7 +212,7 @@ Params:
 }
 ```
 ---
-<h5 name="channelIndex">GET `/api/channels` Получение всех каналов</h5>
+<h5 name="channelIndex">GET <code>/api/channels</code> Получение всех каналов</h5>
 
 Params:
 - `page` - Страница (optional, default. 1)
@@ -263,7 +263,7 @@ Params:
 }
 ```
 ---
-<h5 name="channelShow">GET `/api/channels/{id}` Получение канала</h5>
+<h5 name="channelShow">GET <code>/api/channels/{id}</code> Получение канала</h5>
 
 ```json
 {
@@ -279,7 +279,7 @@ Params:
 }
 ```
 ---
-<h5 name="channelUpdate">PUT `/api/channels/{id}` Обновление канала</h5>
+<h5 name="channelUpdate">PUT <code>/api/channels/{id}</code> Обновление канала</h5>
 
 Params:
 - `type` - Тип канала (required, integer)
@@ -302,7 +302,7 @@ Params:
 }
 ```
 ---
-<h5 name="channelDelete">DELETE `/api/channels/{id}` Удаление канала</h5>
+<h5 name="channelDelete">DELETE <code>/api/channels/{id}</code> Удаление канала</h5>
 
 ```json
 {
