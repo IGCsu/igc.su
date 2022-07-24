@@ -1,7 +1,6 @@
 <p align="center">
-    <a href="https://igc.su" target="_blank" style="color: inherit; text-decoration: none; display: flex; align-items: center; justify-content: center;">
+    <a href="https://igc.su" target="_blank">
         <img src="https://igc.su/images/IGC.png" height="100">
-        <span style="font-size: 70px;">IGC</span>
     </a>
 </p>
 
@@ -13,28 +12,28 @@
 ### API
 Для использования API требуется авторизация через долгосрочный `Bearer`-токен. REST API.
 
-- <span style="color: green">GET</span> `/api/members` - [Получение всех участников сообщества](#memberIndex)
-- <span style="color: green">GET</span> `/api/members/{id}` - [Получение участника сообщества](#memberShow)
-- <span style="color: SteelBlue">PUT</span> `/api/members/{id}` - [Обновление участника сообщества](#memberUpdate)
-- <span style="color: Gold">POST</span> `/api/members` - Создание участника сообщества (не поддерживается)
-- <span style="color: Crimson">DELETE</span> `/api/members/{id}` - Удаление участника сообщества (не поддерживается)
+- GET `/api/members` - [Получение всех участников сообщества](#memberIndex)
+- GET `/api/members/{id}` - [Получение участника сообщества](#memberShow)
+- PUT `/api/members/{id}` - [Обновление участника сообщества](#memberUpdate)
+- POST `/api/members` - Создание участника сообщества (не поддерживается)
+- DELETE `/api/members/{id}` - Удаление участника сообщества (не поддерживается)
 
 
-- <span style="color: green">GET</span> `/api/members` - [Получение всех ролей](#roleIndex)
-- <span style="color: green">GET</span> `/api/roles/{id}` - [Получение роли](#roleShow)
-- <span style="color: SteelBlue">PUT</span> `/api/roles/{id}` - [Обновление роли](#roleUpdate)
-- <span style="color: Gold">POST</span> `/api/roles` - Создание роли (не поддерживается)
-- <span style="color: Crimson">DELETE</span> `/api/roles/{id}` - [Удаление роли](#roleDelete)
+- GET `/api/members` - [Получение всех ролей](#roleIndex)
+- GET `/api/roles/{id}` - [Получение роли](#roleShow)
+- PUT `/api/roles/{id}` - [Обновление роли](#roleUpdate)
+- POST `/api/roles` - Создание роли (не поддерживается)
+- DELETE `/api/roles/{id}` - [Удаление роли](#roleDelete)
 
 
-- <span style="color: green">GET</span> `/api/channels` - [Получение всех каналов](#channelIndex)
-- <span style="color: green">GET</span> `/api/channels/{id}` - [Получение канала](#channelShow)
-- <span style="color: SteelBlue">PUT</span> `/api/channels/{id}` - [Обновление канала](#channelUpdate)
-- <span style="color: Gold">POST</span> `/api/channels` - Создание канала (не поддерживается)
-- <span style="color: Crimson">DELETE</span> `/api/channels/{id}` - [Удаление канала](#channelDelete)
+- GET `/api/channels` - [Получение всех каналов](#channelIndex)
+- GET `/api/channels/{id}` - [Получение канала](#channelShow)
+- PUT `/api/channels/{id}` - [Обновление канала](#channelUpdate)
+- POST `/api/channels` - Создание канала (не поддерживается)
+- DELETE `/api/channels/{id}` - [Удаление канала](#channelDelete)
 
 ---
-<h5 name="memberIndex"><span style="color: green">GET</span> `/api/members` Получение всех участников сообщества</h5>
+<h5 name="memberIndex">GET `/api/members` Получение всех участников сообщества</h5>
 Params:
 - `page` - Страница (optional, default. 1)
 - `count` - Кол-во элементов на одной странице (optional, default. 10000)
@@ -84,7 +83,7 @@ Params:
 }
 ```
 ---
-<h5 name="memberShow"><span style="color: green">GET</span> `/api/members/{id}` Получение участника сообщества</h5>
+<h5 name="memberShow">GET `/api/members/{id}` Получение участника сообщества</h5>
 ```json
 {
     "id": 256114365894230018,
@@ -99,7 +98,7 @@ Params:
 }
 ```
 ---
-<h5 name="memberUpdate"><span style="color: SteelBlue">PUT</span> `/api/members/{id}` Обновление участника сообщества</h5>
+<h5 name="memberUpdate">PUT `/api/members/{id}` Обновление участника сообщества</h5>
 Params:
 - `name` - Имя участника в сообществе (required, string, max:1000)
 - `discriminator` - Дискриминатор участника (required, string, size:4)
@@ -119,7 +118,7 @@ Params:
 }
 ```
 ---
-<h5 name="roleIndex"><span style="color: green">GET</span> `/api/roles` Получение всех ролей</h5>
+<h5 name="roleIndex">GET `/api/roles` Получение всех ролей</h5>
 Params:
 - `page` - Страница (optional, default. 1)
 - `count` - Кол-во элементов на одной странице (optional, default. 10000)
@@ -166,7 +165,7 @@ Params:
 }
 ```
 ---
-<h5 name="roleShow"><span style="color: green">GET</span> `/api/roles/{id}` Получение роли</h5>
+<h5 name="roleShow">GET `/api/roles/{id}` Получение роли</h5>
 ```json
 {
     "id": 648762974277992448,
@@ -178,7 +177,7 @@ Params:
 }
 ```
 ---
-<h5 name="roleUpdate"><span style="color: SteelBlue">PUT</span> `/api/roles/{id}` Обновление роли</h5>
+<h5 name="roleUpdate">PUT `/api/roles/{id}` Обновление роли</h5>
 Params:
 - `name` - Название роли (required, string, max:1000)
 - `color` - Цвет роли (required, string)
@@ -194,7 +193,7 @@ Params:
 }
 ```
 ---
-<h5 name="roleDelete"><span style="color: Crimson">DELETE</span> `/api/roles/{id}` Удаление роли</h5>
+<h5 name="roleDelete">DELETE `/api/roles/{id}` Удаление роли</h5>
 ```json
 {
     "id": 648762974277992448,
@@ -206,7 +205,7 @@ Params:
 }
 ```
 ---
-<h5 name="channelIndex"><span style="color: green">GET</span> `/api/channels` Получение всех каналов</h5>
+<h5 name="channelIndex">GET `/api/channels` Получение всех каналов</h5>
 Params:
 - `page` - Страница (optional, default. 1)
 - `count` - Кол-во элементов на одной странице (optional, default. 10000)
@@ -256,7 +255,7 @@ Params:
 }
 ```
 ---
-<h5 name="channelShow"><span style="color: green">GET</span> `/api/channels/{id}` Получение канала</h5>
+<h5 name="channelShow">GET `/api/channels/{id}` Получение канала</h5>
 ```json
 {
     "id": 453272494724349963,
@@ -271,7 +270,7 @@ Params:
 }
 ```
 ---
-<h5 name="channelUpdate"><span style="color: SteelBlue">PUT</span> `/api/channels/{id}` Обновление канала</h5>
+<h5 name="channelUpdate">PUT `/api/channels/{id}` Обновление канала</h5>
 Params:
 - `type` - Тип канала (required, integer)
 - `position` - Позиция канала (required, integer)
@@ -293,7 +292,7 @@ Params:
 }
 ```
 ---
-<h5 name="channelDelete"><span style="color: Crimson">DELETE</span> `/api/channels/{id}` Удаление канала</h5>
+<h5 name="channelDelete">DELETE `/api/channels/{id}` Удаление канала</h5>
 ```json
 {
     "id": 453272494724349963,
