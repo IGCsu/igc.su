@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class MemberController extends Controller
     /**
      * Получение всех участников сообщества
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function index(Request $request): \Illuminate\Http\JsonResponse
+    public function index(Request $request): JsonResponse
     {
         $count = (integer) $request->input('count', 10000);
 
@@ -24,9 +25,9 @@ class MemberController extends Controller
 
     /**
      * Создание участника сообщества
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function create(): \Illuminate\Http\JsonResponse
+    public function create(): JsonResponse
     {
         return response()->json([
             'error' => '501',
@@ -38,9 +39,9 @@ class MemberController extends Controller
      * Получение участника сообщества
      * @param Request $request
      * @param integer $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function show(Request $request, int $id): \Illuminate\Http\JsonResponse
+    public function show(Request $request, int $id): JsonResponse
     {
         $member = Member::find($id);
 
@@ -51,16 +52,16 @@ class MemberController extends Controller
             ], 400);
         }
 
-        return $member;
+        return response()->json($member, 200);
     }
 
     /**
      * Обновление участника сообщества
      * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
+    public function update(Request $request, int $id): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:1000'],
@@ -90,16 +91,14 @@ class MemberController extends Controller
 
         $member->save();
 
-        return response()->json([
-            'message' => 'success'
-        ], 200);
+        return response()->json($member, 200);
     }
 
     /**
      * Удаление участника сообщества
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function delete(): \Illuminate\Http\JsonResponse
+    public function delete(): JsonResponse
     {
         return response()->json([
             'error' => '501',

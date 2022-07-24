@@ -57,6 +57,7 @@ class Member extends Model
      */
     public function generateHeadRole(): string
     {
+        $this->headRole = '0';
         $roles = Role::orderBy('position', 'asc')->get();
 
         foreach($roles as $role){
