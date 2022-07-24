@@ -85,6 +85,7 @@ class MemberController extends Controller
         $member->roles = $request->input('roles');
 
         $member->generateAvatar($request->input('avatar'));
+        $member->generateHeadRole();
         $member->generateSearch();
 
         $member->save();

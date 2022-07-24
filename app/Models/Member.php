@@ -51,4 +51,22 @@ class Member extends Model
         return $this->search = $this->id.mb_strtolower($this->name).'#'.$this->discriminator;
     }
 
+    /**
+     * Находит, сохраняет и возвращает ID высшей роли у пользователя
+     * @return string Role ID
+     */
+    public function generateHeadRole(): string
+    {
+        $roles = Role::orderBy('position', 'asc')->get();
+
+        foreach($roles as $role){
+            if(in_array($role, $this->roles)){
+                $this->headRole = $role->id;
+                break;
+            }
+        }
+
+        return $this->headRole;
+    }
+
 }
