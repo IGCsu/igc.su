@@ -61,9 +61,38 @@ class MemberController extends Controller
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
     {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:1000'],
+            'discriminator' => ['required', 'string', 'size:4'],
+            'avatar' => ['string', 'nullable'],
+            'roles' => ['json', 'required'],
+        ]);
 
+        if($validator->fails()){
+            return response()->json([
+                'error' => '400',
+                'message' => $validator->errors()->first()
+            ], 400);
+        }
+
+        $member = Member::whereId($id)->firstOrNew();
+
+        $member->id = $id;
+
+        $member->name = $request->input('name');
+        $member->discriminator = $request->input('discriminator');
+        $member->roles = $request->input('roles');
+
+        $member->generateAvatar($request->input('avatar'));
+        $member->generateSearch();
+
+        $member->save();
+
+        return response()->json([
+            'message' => 'success'
+        ], 200);
     }
 
     /**
