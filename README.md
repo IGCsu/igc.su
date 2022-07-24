@@ -12,25 +12,25 @@
 ### API
 Для использования API требуется авторизация через долгосрочный `Bearer`-токен. REST API.
 
-- GET `/api/members` - [Получение всех участников сообщества](#memberIndex)
-- GET `/api/members/{id}` - [Получение участника сообщества](#memberShow)
-- PUT `/api/members/{id}` - [Обновление участника сообщества](#memberUpdate)
-- POST `/api/members` - Создание участника сообщества (не поддерживается)
-- DELETE `/api/members/{id}` - Удаление участника сообщества (не поддерживается)
+GET `/api/members` - [Получение всех участников сообщества](#memberIndex)\
+GET `/api/members/{id}` - [Получение участника сообщества](#memberShow)\
+PUT `/api/members/{id}` - [Обновление участника сообщества](#memberUpdate)\
+POST `/api/members` - Создание участника сообщества (не поддерживается)\
+DELETE `/api/members/{id}` - Удаление участника сообщества (не поддерживается)
 
 
-- GET `/api/members` - [Получение всех ролей](#roleIndex)
-- GET `/api/roles/{id}` - [Получение роли](#roleShow)
-- PUT `/api/roles/{id}` - [Обновление роли](#roleUpdate)
-- POST `/api/roles` - Создание роли (не поддерживается)
-- DELETE `/api/roles/{id}` - [Удаление роли](#roleDelete)
+GET `/api/members` - [Получение всех ролей](#roleIndex)\
+GET `/api/roles/{id}` - [Получение роли](#roleShow)\
+PUT `/api/roles/{id}` - [Обновление роли](#roleUpdate)\
+POST `/api/roles` - Создание роли (не поддерживается)\
+DELETE `/api/roles/{id}` - [Удаление роли](#roleDelete)
 
 
-- GET `/api/channels` - [Получение всех каналов](#channelIndex)
-- GET `/api/channels/{id}` - [Получение канала](#channelShow)
-- PUT `/api/channels/{id}` - [Обновление канала](#channelUpdate)
-- POST `/api/channels` - Создание канала (не поддерживается)
-- DELETE `/api/channels/{id}` - [Удаление канала](#channelDelete)
+GET `/api/channels` - [Получение всех каналов](#channelIndex)\
+GET `/api/channels/{id}` - [Получение канала](#channelShow)\
+PUT `/api/channels/{id}` - [Обновление канала](#channelUpdate)\
+POST `/api/channels` - Создание канала (не поддерживается)\
+DELETE `/api/channels/{id}` - [Удаление канала](#channelDelete)
 
 ---
 <h5 name="memberIndex">GET `/api/members` Получение всех участников сообщества</h5>
