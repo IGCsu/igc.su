@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -14,9 +15,9 @@ class RoleController extends Controller
     /**
      * Получение всех ролей
      * @param Request $request
-     * @return JsonResponse
+     * @return LengthAwarePaginator
      */
-    public function index(Request $request): JsonResponse
+    public function index(Request $request): LengthAwarePaginator
     {
         $count = (integer) $request->input('count', 10000);
 
