@@ -34,6 +34,7 @@ DELETE `/api/channels/{id}` - [Удаление канала](#channelDelete)
 
 ---
 <h5 name="memberIndex">GET `/api/members` Получение всех участников сообщества</h5>
+
 Params:
 - `page` - Страница (optional, default. 1)
 - `count` - Кол-во элементов на одной странице (optional, default. 10000)
@@ -84,6 +85,7 @@ Params:
 ```
 ---
 <h5 name="memberShow">GET `/api/members/{id}` Получение участника сообщества</h5>
+
 ```json
 {
     "id": 256114365894230018,
@@ -99,6 +101,7 @@ Params:
 ```
 ---
 <h5 name="memberUpdate">PUT `/api/members/{id}` Обновление участника сообщества</h5>
+
 Params:
 - `name` - Имя участника в сообществе (required, string, max:1000)
 - `discriminator` - Дискриминатор участника (required, string, size:4)
@@ -119,6 +122,7 @@ Params:
 ```
 ---
 <h5 name="roleIndex">GET `/api/roles` Получение всех ролей</h5>
+
 Params:
 - `page` - Страница (optional, default. 1)
 - `count` - Кол-во элементов на одной странице (optional, default. 10000)
@@ -166,6 +170,7 @@ Params:
 ```
 ---
 <h5 name="roleShow">GET `/api/roles/{id}` Получение роли</h5>
+
 ```json
 {
     "id": 648762974277992448,
@@ -178,6 +183,7 @@ Params:
 ```
 ---
 <h5 name="roleUpdate">PUT `/api/roles/{id}` Обновление роли</h5>
+
 Params:
 - `name` - Название роли (required, string, max:1000)
 - `color` - Цвет роли (required, string)
@@ -194,6 +200,7 @@ Params:
 ```
 ---
 <h5 name="roleDelete">DELETE `/api/roles/{id}` Удаление роли</h5>
+
 ```json
 {
     "id": 648762974277992448,
@@ -206,6 +213,7 @@ Params:
 ```
 ---
 <h5 name="channelIndex">GET `/api/channels` Получение всех каналов</h5>
+
 Params:
 - `page` - Страница (optional, default. 1)
 - `count` - Кол-во элементов на одной странице (optional, default. 10000)
@@ -256,6 +264,7 @@ Params:
 ```
 ---
 <h5 name="channelShow">GET `/api/channels/{id}` Получение канала</h5>
+
 ```json
 {
     "id": 453272494724349963,
@@ -271,6 +280,7 @@ Params:
 ```
 ---
 <h5 name="channelUpdate">PUT `/api/channels/{id}` Обновление канала</h5>
+
 Params:
 - `type` - Тип канала (required, integer)
 - `position` - Позиция канала (required, integer)
@@ -293,6 +303,7 @@ Params:
 ```
 ---
 <h5 name="channelDelete">DELETE `/api/channels/{id}` Удаление канала</h5>
+
 ```json
 {
     "id": 453272494724349963,
