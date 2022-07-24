@@ -1,64 +1,309 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <a href="https://igc.su" target="_blank" style="color: inherit; text-decoration: none; display: flex; align-items: center; justify-content: center;">
+        <img src="https://igc.su/images/IGC.png" height="100">
+        <span style="font-size: 70px;">IGC</span>
+    </a>
 </p>
 
-## About Laravel
+## О проекте
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Это сайт небольшого интернет-сообщества IGC.\
+Сайт используется для публикации Устава сообщества, проведения выборов и для вывода статистики. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### API
+Для использования API требуется авторизация через долгосрочный `Bearer`-токен. REST API.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- <span style="color: green">GET</span> `/api/members` - [Получение всех участников сообщества](#memberIndex)
+- <span style="color: green">GET</span> `/api/members/{id}` - [Получение участника сообщества](#memberShow)
+- <span style="color: SteelBlue">PUT</span> `/api/members/{id}` - [Обновление участника сообщества](#memberUpdate)
+- <span style="color: Gold">POST</span> `/api/members` - Создание участника сообщества (не поддерживается)
+- <span style="color: Crimson">DELETE</span> `/api/members/{id}` - Удаление участника сообщества (не поддерживается)
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- <span style="color: green">GET</span> `/api/members` - [Получение всех ролей](#roleIndex)
+- <span style="color: green">GET</span> `/api/roles/{id}` - [Получение роли](#roleShow)
+- <span style="color: SteelBlue">PUT</span> `/api/roles/{id}` - [Обновление роли](#roleUpdate)
+- <span style="color: Gold">POST</span> `/api/roles` - Создание роли (не поддерживается)
+- <span style="color: Crimson">DELETE</span> `/api/roles/{id}` - [Удаление роли](#roleDelete)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+- <span style="color: green">GET</span> `/api/channels` - [Получение всех каналов](#channelIndex)
+- <span style="color: green">GET</span> `/api/channels/{id}` - [Получение канала](#channelShow)
+- <span style="color: SteelBlue">PUT</span> `/api/channels/{id}` - [Обновление канала](#channelUpdate)
+- <span style="color: Gold">POST</span> `/api/channels` - Создание канала (не поддерживается)
+- <span style="color: Crimson">DELETE</span> `/api/channels/{id}` - [Удаление канала](#channelDelete)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+<h5 name="memberIndex"><span style="color: green">GET</span> `/api/members` Получение всех участников сообщества</h5>
+Params:
+- `page` - Страница (optional, default. 1)
+- `count` - Кол-во элементов на одной странице (optional, default. 10000)
+```json
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 256114365894230018,
+            "name": "Русиш",
+            "discriminator": "0197",
+            "avatar": "avatars/256114365894230018/b09f871fbb4b2ec25883a72ae71eea03",
+            "search": "256114365894230018русиш#0197",
+            "roles": "['562545964708134912', '613412133715312641', '648762974277992448']",
+            "headRole": "607650874097139733",
+            "created_at": "2022-07-24T16:48:38.000000Z",
+            "updated_at": "2022-07-24T16:48:38.000000Z"
+        }
+    ],
+    "first_page_url": "https://igc.su/api/members?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "https://igc.su/api/members?page=1",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "https://igc.su/api/members?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "https://igc.su/api/members",
+    "per_page": 10000,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}
+```
+---
+<h5 name="memberShow"><span style="color: green">GET</span> `/api/members/{id}` Получение участника сообщества</h5>
+```json
+{
+    "id": 256114365894230018,
+    "name": "Русиш",
+    "discriminator": "0197",
+    "avatar": "avatars/256114365894230018/b09f871fbb4b2ec25883a72ae71eea03",
+    "search": "256114365894230018русиш#0197",
+    "roles": "['562545964708134912', '613412133715312641', '648762974277992448']",
+    "headRole": "607650874097139733",
+    "created_at": "2022-07-24T16:48:38.000000Z",
+    "updated_at": "2022-07-24T16:48:38.000000Z"
+}
+```
+---
+<h5 name="memberUpdate"><span style="color: SteelBlue">PUT</span> `/api/members/{id}` Обновление участника сообщества</h5>
+Params:
+- `name` - Имя участника в сообществе (required, string, max:1000)
+- `discriminator` - Дискриминатор участника (required, string, size:4)
+- `avatar` - Кол-во элементов на одной странице (required, string, nullable)
+- `roles` - Кол-во элементов на одной странице (required, json)
+```json
+{
+    "id": 256114365894230018,
+    "name": "Русиш",
+    "discriminator": "0197",
+    "avatar": "avatars/256114365894230018/b09f871fbb4b2ec25883a72ae71eea03",
+    "search": "256114365894230018русиш#0197",
+    "roles": "['562545964708134912', '613412133715312641', '648762974277992448']",
+    "headRole": "607650874097139733",
+    "created_at": "2022-07-24T16:48:38.000000Z",
+    "updated_at": "2022-07-24T16:48:38.000000Z"
+}
+```
+---
+<h5 name="roleIndex"><span style="color: green">GET</span> `/api/roles` Получение всех ролей</h5>
+Params:
+- `page` - Страница (optional, default. 1)
+- `count` - Кол-во элементов на одной странице (optional, default. 10000)
+```json
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 648762974277992448,
+            "name": "alive",
+            "color": "13565893",
+            "position": "90",
+            "created_at": "2022-07-24T18:19:38.000000Z",
+            "updated_at": "2022-07-24T18:19:38.000000Z"
+        }
+    ],
+    "first_page_url": "https://igc.su/api/roles?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "https://igc.su/api/roles?page=1",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "https://igc.su/api/roles?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "https://igc.su/api/roles",
+    "per_page": 10000,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}
+```
+---
+<h5 name="roleShow"><span style="color: green">GET</span> `/api/roles/{id}` Получение роли</h5>
+```json
+{
+    "id": 648762974277992448,
+    "name": "alive",
+    "color": "13565893",
+    "position": "90",
+    "created_at": "2022-07-24T18:19:38.000000Z",
+    "updated_at": "2022-07-24T18:19:38.000000Z"
+}
+```
+---
+<h5 name="roleUpdate"><span style="color: SteelBlue">PUT</span> `/api/roles/{id}` Обновление роли</h5>
+Params:
+- `name` - Название роли (required, string, max:1000)
+- `color` - Цвет роли (required, string)
+- `position` - Позиция роли (required, integer)
+```json
+{
+    "id": 648762974277992448,
+    "name": "alive",
+    "color": "13565893",
+    "position": "90",
+    "created_at": "2022-07-24T18:19:38.000000Z",
+    "updated_at": "2022-07-24T18:19:38.000000Z"
+}
+```
+---
+<h5 name="roleDelete"><span style="color: Crimson">DELETE</span> `/api/roles/{id}` Удаление роли</h5>
+```json
+{
+    "id": 648762974277992448,
+    "name": "alive",
+    "color": "13565893",
+    "position": "90",
+    "created_at": "2022-07-24T18:19:38.000000Z",
+    "updated_at": "2022-07-24T18:19:38.000000Z"
+}
+```
+---
+<h5 name="channelIndex"><span style="color: green">GET</span> `/api/channels` Получение всех каналов</h5>
+Params:
+- `page` - Страница (optional, default. 1)
+- `count` - Кол-во элементов на одной странице (optional, default. 10000)
+```json
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 453272494724349963,
+            "type": "0",
+            "position": "12",
+            "name": "основной",
+            "topic": "Основной канал для общения",
+            "nsfw": "0",
+            "parent_id": "500034754406645760",
+            "created_at": "2022-07-24T18:52:58.000000Z",
+            "updated_at": "2022-07-24T18:52:58.000000Z"
+        }
+    ],
+    "first_page_url": "https://igc.su/api/channels?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "https://igc.su/api/channels?page=1",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "https://igc.su/api/channels?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "https://igc.su/api/channels",
+    "per_page": 10000,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}
+```
+---
+<h5 name="channelShow"><span style="color: green">GET</span> `/api/channels/{id}` Получение канала</h5>
+```json
+{
+    "id": 453272494724349963,
+    "type": "0",
+    "position": "12",
+    "name": "основной",
+    "topic": "Основной канал для общения",
+    "nsfw": "0",
+    "parent_id": "500034754406645760",
+    "created_at": "2022-07-24T18:52:58.000000Z",
+    "updated_at": "2022-07-24T18:52:58.000000Z"
+}
+```
+---
+<h5 name="channelUpdate"><span style="color: SteelBlue">PUT</span> `/api/channels/{id}` Обновление канала</h5>
+Params:
+- `type` - Тип канала (required, integer)
+- `position` - Позиция канала (required, integer)
+- `name` - Название канала (required, string, max:1000)
+- `topic` - Описание канала (required, string, max:1000)
+- `nsfw` - NSFW-метка канала (required, boolean)
+- `parent_id` - ID канала родителя (required, integer)
+```json
+{
+    "id": 453272494724349963,
+    "type": "0",
+    "position": "12",
+    "name": "основной",
+    "topic": "Основной канал для общения",
+    "nsfw": "0",
+    "parent_id": "500034754406645760",
+    "created_at": "2022-07-24T18:52:58.000000Z",
+    "updated_at": "2022-07-24T18:52:58.000000Z"
+}
+```
+---
+<h5 name="channelDelete"><span style="color: Crimson">DELETE</span> `/api/channels/{id}` Удаление канала</h5>
+```json
+{
+    "id": 453272494724349963,
+    "type": "0",
+    "position": "12",
+    "name": "основной",
+    "topic": "Основной канал для общения",
+    "nsfw": "0",
+    "parent_id": "500034754406645760",
+    "created_at": "2022-07-24T18:52:58.000000Z",
+    "updated_at": "2022-07-24T18:52:58.000000Z"
+}
+```
