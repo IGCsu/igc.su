@@ -18,9 +18,9 @@ class CreateChannelsTable extends Migration
             $table->integer('type');
             $table->integer('position');
             $table->text('name');
-            $table->text('topic');
+            $table->text('topic')->nullable();;
             $table->boolean('nsfw');
-            $table->text('parent_id');
+            $table->text('parent_id')->nullable();;
             $table->timestamps();
         });
     }

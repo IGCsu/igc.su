@@ -93,7 +93,7 @@ class ChannelController extends Controller
 
         $channel->save();
 
-        return response()->json($channel, 200);
+        return response()->json('success', 200);
     }
 
     /**
@@ -115,7 +115,7 @@ class ChannelController extends Controller
 
         $channel->delete();
 
-        return response()->json($channel, 200);
+        return response()->json('success', 200);
     }
 
 }

@@ -16,7 +16,6 @@ class DiscordController extends Controller
     /**
      * Возвращает массив объектов каналов сообщества
      * @return array {@link https://discord.com/developers/docs/resources/channel#channel-object}
-     * @throws GuzzleHttp\Exception\GuzzleException
      */
     public static function getChannels(): array
     {
@@ -26,7 +25,6 @@ class DiscordController extends Controller
     /**
      * Возвращает массив объектов ролей сообщества
      * @return array {@link https://discord.com/developers/docs/topics/permissions#role-object}
-     * @throws GuzzleHttp\Exception\GuzzleException
      */
     public static function getRoles(): array
     {
@@ -36,7 +34,6 @@ class DiscordController extends Controller
     /**
      * Возвращает массив объектов участников сообщества
      * @return array {@link https://discord.com/developers/docs/resources/guild#guild-member-object}
-     * @throws GuzzleHttp\Exception\GuzzleException
      */
     public static function getMembers(): array
     {
@@ -75,7 +72,6 @@ class DiscordController extends Controller
      * Выполняет запрос и возвращает данные
      * @param string $url
      * @return array
-     * @throws GuzzleHttp\Exception\GuzzleException
      */
     public static function getData(string $url): array
     {

@@ -4,25 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\DiscordController;
 
 class Member extends Model
 {
     use HasFactory;
 
     protected $casts = [
-        'roles' => 'array',
+        'roles' => 'array'
     ];
 
     /**
      * Возвращает URL путь к аватарке пользователя и сохраняет его
-     * @param string|null $avatar Hesh аватарки пользователя
+     * @param string|null $guildAvatar Hesh аватарки участника сообщества
+     * @param string|null $userAvatar Hesh аватарки пользователя
      * @return string Ссылка
      */
-    public function generateAvatar(?string $avatar = null): string
+    public function generateAvatar(?string $guildAvatar = null, ?string $userAvatar = null): string
     {
-        return $this->avatar = $avatar == null
-            ? $this->getDefaultAvatarLink(substr($this->discriminator, -1))
-            : 'avatars/'.$this->id.'/'.$avatar;
+        if($guildAvatar !== null){
+            return $this->avatar = 'guilds/'.env('DISCORD_GUILD_ID').'/users/'.$this->id.'/avatars/'.$guildAvatar;
+        }
+
+        if($userAvatar !== null){
+            return $this->avatar = 'avatars/'.$this->id.'/'.$userAvatar;
+        }
+
+        return $this->avatar = $this->getDefaultAvatarLink(substr($this->discriminator, -1));
     }
 
     /**
@@ -55,19 +63,60 @@ class Member extends Model
      * Находит, сохраняет и возвращает ID высшей роли у пользователя
      * @return string Role ID
      */
-    public function generateHeadRole(): string
+    public function generateHeadRole()
     {
         $this->headRole = '0';
-        $roles = Role::orderBy('position', 'asc')->get();
+        $roles = Role::orderBy('position', 'desc')->get();
 
         foreach($roles as $role){
-            if(in_array($role, $this->roles)){
+            if(in_array($role->id, $this->roles)){
                 $this->headRole = $role->id;
                 break;
             }
         }
 
         return $this->headRole;
+    }
+
+    /**
+     * Возвращает экземпляр роли для высшей роли участника сообщества
+     * @return Role|null
+     */
+    public function getHeadRole(): ?Role
+    {
+        return Role::find($this->headRole);
+    }
+
+    /**
+     * Возвращает экземпляр по ID, если его находит. Если нет - запрашивает его из Discord API
+     * @param $id
+     * @return Member|null
+     */
+    public static function findOrFetch($id): ?Member
+    {
+        $member = self::whereId($id)->firstOrNew();
+
+        if(!empty($member->id)){
+            return $member;
+        }
+
+        $data = DiscordController::getData('/members/'.$id);
+
+        if(!$data) return null;
+
+        $member->id = $data['user']['id'];
+
+        $member->name = $data['nick'] ?? $data['user']['username'];
+        $member->discriminator = $data['user']['discriminator'];
+        $member->roles = $data['roles'];
+
+        $member->generateAvatar($data['avatar']);
+        $member->generateHeadRole();
+        $member->generateSearch();
+
+        $member->save();
+
+        return self::find($id);
     }
 
 }

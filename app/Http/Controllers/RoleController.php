@@ -87,7 +87,7 @@ class RoleController extends Controller
 
         $role->save();
 
-        return response()->json($role, 200);
+        return response()->json('success', 200);
     }
 
     /**
@@ -109,7 +109,7 @@ class RoleController extends Controller
 
         $role->delete();
 
-        return response()->json($role, 200);
+        return response()->json('success', 200);
     }
 
 }

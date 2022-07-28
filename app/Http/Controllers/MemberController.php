@@ -92,7 +92,7 @@ class MemberController extends Controller
 
         $member->save();
 
-        return response()->json($member, 200);
+        return response()->json('success', 200);
     }
 
     /**
