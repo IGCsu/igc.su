@@ -11,7 +11,7 @@
             <b-navbar-nav>
 
                 <b-nav-item href="https://discordapp.com/invite/htBgEU5">Discord</b-nav-item>
-                <b-nav-item href="/">Устав</b-nav-item>
+                <b-nav-item href="{{ route('law') }}">Устав</b-nav-item>
                 <b-nav-item href="#">Уровни</b-nav-item>
 
                 <b-nav-item-dropdown text="Выборы" right>
