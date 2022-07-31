@@ -1,65 +1,110 @@
 .law {
 
+    &-text {
+        margin-top: 2rem;
+
+        font-size: 18px;
+        text-align: center;
+    }
+
     &-nav {
+        position: sticky;
+        z-index: 5;
+        top: $navbar;
 
-        margin: 4rem auto;
-        max-width: 500px;
-        overflow: hidden;
+        height: 2rem;
 
-        border: 1px solid #0003;
-        border-radius: 8px;
-        box-shadow: 0 2px 3px 1px #0005;
-        background: $dark1;
+        background: $dark0;
+    }
 
-        &-item {
-            display: block;
-            position: relative;
-            padding: 0.5rem 0.5rem 0.5rem 3.5rem;
+    &-article {
 
-            transition: 0.2s;
+        margin-bottom: 4rem;
 
-            color: #eee;
+        &-head {
+            position: sticky;
+            z-index: 5;
+            top: calc(#{$navbar} + 2rem);
 
-            &:hover {
-                color: #eee;
-                text-decoration: none;
-                background: $blurple;
+            background: $dark0;
 
-                .law-nav-icon {
-                    color: #eee;
-                }
+            div {
+                min-height: 8px;
+                background: $dark1;
+                border-right: 1px solid $dark2;
+                border-left: 1px solid $dark2;
+                border-top: 1px solid $dark2;
 
-                .law-nav-title {
-                    color: #eee;
+                border-top-right-radius: 8px;
+                border-top-left-radius: 8px;
+            }
+        }
+
+        &-text {
+            background: $dark1;
+            border-right: 1px solid $dark2;
+            border-left: 1px solid $dark2;
+            overflow: hidden;
+
+            &-paragraph {
+                margin: 0 2rem 0.5rem;
+
+                font-size: 18px;
+                white-space: pre-line;
+
+                small {
+                    display: block;
+                    opacity: 0.2;
+
+                    font-size: 60%;
+                    line-height: 1;
                 }
             }
         }
 
-        &-icon {
-            position: absolute;
-            left: 0.5rem;
-            width: 2.5rem;
+        &-footer {
+            min-height: 8px;
+            background: $dark1;
+            border-bottom: 1px solid $dark2;
+            border-right: 1px solid $dark2;
+            border-left: 1px solid $dark2;
 
-            transition: 0.2s;
-
-            font-size: 26px;
-            text-align: center;
-            color: $blurple;
+            border-bottom-right-radius: 8px;
+            border-bottom-left-radius: 8px;
         }
 
-        &-title {
+        a {
+            padding: 1px 4px;
+
+            cursor: pointer;
+            user-select: none;
+
             transition: 0.2s;
+            border-radius: 20px;
+            background: #5865f26e;
+            border: 1px solid #0006;
 
-            font-size: 21px;
-            line-height: 21px;
-            color: $blurple;
-        }
+            text-decoration: none;
+            white-space: nowrap;
+            font-size: 90%;
+            outline: none;
+            color: #fffd;
 
-        &-desc {
-            line-height: 18px;
-            opacity: 0.8;
+            i {
+                position: relative;
+                top: 1px;
+            }
+
+            &:hover {
+                background: #5865f2;
+                color: #fff;
+            }
         }
 
     }
 
 }
+
+@import "law/index";
+@import "law/general";
+@import "law/social";

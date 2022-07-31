@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Channel;
 use App\Models\Law;
+use App\Models\Role;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Validator;
@@ -14,8 +17,25 @@ use Illuminate\Support\Facades\View;
 class LawController extends Controller
 {
 
+    /**
+     * Массив каналов
+     * @var Channel[]
+     */
+    private $channels = [];
 
-    public function page(Request $request, $chapter = 'index')
+    /**
+     * Массив ролей
+     * @var Role[]
+     */
+    private $roles = [];
+
+    /**
+     * Возвращает страницу Устава
+     * @param Request $request
+     * @param string $chapter
+     * @return Application|Factory|\Illuminate\Contracts\View\View|RedirectResponse
+     */
+    public function page(Request $request, string $chapter = 'index')
     {
         if($chapter == 'history'){
             return $this->history();
@@ -27,7 +47,7 @@ class LawController extends Controller
             return redirect()->route('law', $date ? ['date' => $date] : null);
         }
 
-        $query = Law::where('deleted', 1)
+        $query = Law::where('deleted', 0)
             ->where('chapter', $chapter)
             ->groupBy('number')
             ->latest();
@@ -36,9 +56,68 @@ class LawController extends Controller
             $query = $query->whereDate('created_at', '<=', $date);
         }
 
-        return view('law.'.$chapter, [
-            'data' => $query->get()
-        ]);
+        $lawRaw = $query->get();
+
+        $this->setData(Channel::all(), 'channels');
+        $this->setData(Role::all(), 'roles');
+
+        $data = [];
+        foreach($lawRaw as $lawRow){
+            $lawRow->level = count(explode('.', $lawRow->number));
+
+            $lawRow->text = $this->replace($lawRow->text);
+
+            $data[$lawRow->number] = $lawRow;
+        }
+
+        uasort($data, function($a, $b){
+            return version_compare($a->number, $b->number);
+        });
+
+        return view('law.'.$chapter, [ 'data' => $data ]);
+    }
+
+    /**
+     * Вносит в $this данные
+     * @param $data
+     * @param string $name
+     * @return void
+     */
+    public function setData($data, string $name)
+    {
+        foreach($data as $row) $this->{$name}[$row->id] = $row;
+    }
+
+    /**
+     * Заменяет в переданной строке блоки ролей и каналов
+     * @param string $text
+     * @return string
+     */
+    public function replace(string $text): string
+    {
+        $text = preg_replace_callback(
+            '/<#([0-9]+)>/i',
+            function($matches){
+                $id = $matches[1];
+                if(empty($this->channels[$id])) return '<a target="_blank" title="'.$id.'" href="https://discord.com/channels/433242520034738186/'.$id.'">'.$id.'</a>';
+				$type = $this->channels[$id]->type == 2
+                    ? '<i class="bi bi-volume-down"></i>'
+                    : '<i class="bi bi-hash"></i>';
+				return '<a class="law-article-channel" target="_blank" title="'.$this->channels[$id]->topic.'" href="https://discord.com/channels/433242520034738186/'.$id.'">'.$type.$this->channels[$id]->name.'</a>';
+            },
+            $text
+        );
+
+        $text = preg_replace_callback(
+            '/<@([0-9]+)>/i',
+            function($matches){
+                $id = $matches[1];
+                return '<b class="law-article-role" role="'.$id.'" style="color: #'.dechex($this->roles[$id]->color).'"><i class="icon-line-at-sign"></i>'.$this->roles[$id]->name.'</b>';
+            },
+            $text
+        );
+
+        return $text;
     }
 
     /**

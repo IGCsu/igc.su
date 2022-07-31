@@ -1,0 +1,60 @@
+.law-index {
+
+    margin: 3rem auto;
+    max-width: 500px;
+    overflow: hidden;
+
+    border-radius: 8px;
+    box-shadow: 0 2px 3px 1px #0005;
+    background: $dark1;
+
+    &-item {
+        display: block;
+        position: relative;
+        padding: 0.5rem 0.5rem 0.5rem 3.5rem;
+
+        transition: 0.2s;
+
+        color: #eee;
+
+        &:hover {
+            color: #eee;
+            text-decoration: none;
+            background: $blurple;
+
+            .law-index-icon {
+                color: #eee;
+            }
+
+            .law-index-title {
+                color: #eee;
+            }
+        }
+    }
+
+    &-icon {
+        position: absolute;
+        left: 0.5rem;
+        width: 2.5rem;
+
+        transition: 0.2s;
+
+        font-size: 26px;
+        text-align: center;
+        color: $blurple;
+    }
+
+    &-title {
+        transition: 0.2s;
+
+        font-size: 21px;
+        line-height: 21px;
+        color: $blurple;
+    }
+
+    &-desc {
+        line-height: 18px;
+        opacity: 0.8;
+    }
+
+}
