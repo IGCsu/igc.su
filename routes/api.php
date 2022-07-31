@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\LawController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,14 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('/{id}', [ChannelController::class, 'show'])->name('show');
         Route::put('/{id}', [ChannelController::class, 'update'])->name('update');
         Route::delete('/{id}', [ChannelController::class, 'delete'])->name('delete');
+    });
+
+    Route::name('law.')->prefix('law')->group(function(){
+        Route::get('/', [LawController::class, 'index'])->name('index');
+        Route::post('/', [LawController::class, 'create'])->name('create');
+        Route::get('/{id}', [LawController::class, 'show'])->name('show');
+        Route::put('/{id}', [LawController::class, 'update'])->name('update');
+        Route::delete('/{id}', [LawController::class, 'delete'])->name('delete');
     });
 
 });
