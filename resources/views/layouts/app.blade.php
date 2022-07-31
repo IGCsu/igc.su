@@ -11,7 +11,7 @@
 
     @yield('meta')
 
-    @hasSection('navigation')
+    @hasSection('title')
         <title>@yield('title') | IGC new</title>
     @else
         <title>IGC new</title>

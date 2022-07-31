@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LawController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -17,6 +18,14 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/law/{chapter?}', [LawController::class, 'page'])->name('law');
+
+//Route::post('/tokens/create', function (Request $request) {
+//    $token = $request->user()->createToken('admin');
+//
+//    return json_encode($token, JSON_PRETTY_PRINT);
+//});
 
 /**
  * Авторизация через Discord
