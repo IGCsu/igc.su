@@ -82,16 +82,19 @@ class LawController extends Controller
             ], 400);
         }
 
+        $author = $request->input('author', null);
+
         $lawRow = new Law();
 
         $lawRow->chapter = $request->input('chapter');
         $lawRow->number = $request->input('number');
         $lawRow->text = $request->input('text');
-        $lawRow->author = $request->input('author', null);
+
+        if($author) $lawRow->author = $author;
 
         $lawRow->save();
 
-        return response()->json('success', 200);
+        return response()->json([ 'message' => 'success' ], 200);
     }
 
     /**
@@ -146,15 +149,19 @@ class LawController extends Controller
             ], 400);
         }
 
+        $author = $request->input('author', null);
+        $deleted = $request->input('deleted', null);
+
         $lawRow->chapter = $request->input('chapter');
         $lawRow->number = $request->input('number');
         $lawRow->text = $request->input('text');
-        $lawRow->author = $request->input('author', null);
-        $lawRow->deleted = $request->input('deleted', null);
+
+        if($author) $lawRow->author = $author;
+        if($deleted) $lawRow->deleted = $deleted;
 
         $lawRow->save();
 
-        return response()->json('success', 200);
+        return response()->json([ 'message' => 'success' ], 200);
     }
 
     /**
@@ -178,7 +185,7 @@ class LawController extends Controller
 
         $lawRow->save();
 
-        return response()->json('success', 200);
+        return response()->json([ 'message' => 'success' ], 200);
     }
 
 }
