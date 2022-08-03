@@ -12,9 +12,29 @@
         z-index: 5;
         top: $navbar;
 
-        height: 2rem;
+        display: flex;
+        align-items: center;
+        height: 3rem;
 
         background: $dark0;
+
+        &-back {
+            display: block;
+
+            padding: 0 0.5rem;
+            border-radius: 0.5rem;
+
+            transition: 0.2ms;
+
+            color: $blurple;
+            font-size: 18px;
+
+            &:hover {
+                text-decoration: none;
+                background: $blurple;
+                color: #eee;
+            }
+        }
     }
 
     &-article {
@@ -24,7 +44,7 @@
         &-head {
             position: sticky;
             z-index: 5;
-            top: calc(#{$navbar} + 2rem);
+            top: calc(#{$navbar} + 3rem);
 
             background: $dark0;
 
@@ -47,7 +67,7 @@
             overflow: hidden;
 
             &-paragraph {
-                margin: 0 2rem 0.5rem;
+                margin: 0 3% 0.5rem;
 
                 font-size: 18px;
                 white-space: pre-line;
@@ -74,7 +94,7 @@
         }
 
         a {
-            padding: 1px 4px;
+            padding: 1px 8px 1px 4px;
 
             cursor: pointer;
             user-select: none;
@@ -105,6 +125,11 @@
 
 }
 
+@import "law/raw";
+
 @import "law/index";
 @import "law/general";
 @import "law/social";
+@import "law/orders";
+@import "law/bots";
+@import "law/roles";

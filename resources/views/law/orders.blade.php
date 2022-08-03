@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Social')
+@section('title', 'Orders')
 
 @section('content')
 
@@ -14,7 +14,7 @@
                 <div></div>
             </div>
 
-            <div class="law-article-text law-social">
+            <div class="law-article-text law-orders">
                 @foreach($data as $lawRow)
                     <div class="law-article-text-paragraph law-article-text-{{ $lawRow->level }}" field="{{ $lawRow->number }}">
                         <small>{{ $lawRow->number }}</small>{!! $lawRow->text !!}</div>

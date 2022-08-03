@@ -1,0 +1,32 @@
+.law-raw {
+
+    font-family: monospace;
+    font-size: 1rem;
+
+    h2 {
+        margin-top: 4rem;
+
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    &-paragraph {
+        margin: 0.5rem 5%;
+        display: flex;
+    }
+
+    &-number {
+        flex: 0 0 75px;
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    &-text {
+
+    }
+
+    &-2 {
+        margin-top: 2rem;
+    }
+
+}

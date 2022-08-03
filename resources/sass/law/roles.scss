@@ -1,0 +1,37 @@
+.law-roles {
+
+    &-item {
+        display: flex;
+        margin: 2rem 0;
+    }
+
+    &-color {
+        flex: 0 0 3%;
+    }
+
+    &-text {
+        flex: 1;
+
+        h2 {
+            margin: 0;
+        }
+
+        small {
+            display: inline-block;
+            position: relative;
+            padding-right: 5px;
+            top: -3px;
+        }
+
+    }
+
+    .law-article-text-paragraph {
+        margin: 0 2% 0;
+    }
+
+    .law-article-text-2 {
+        line-height: 0.5;
+        margin-bottom: 0.5rem;
+    }
+
+}
