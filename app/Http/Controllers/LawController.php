@@ -54,8 +54,8 @@ class LawController extends Controller
     {
         $date = $request->query('date', null);
 
-        $this->setData(Channel::all(), 'channels');
-        $this->setData(Role::all(), 'roles');
+        $this->channels = Channel::list();
+        $this->roles = Role::list();
 
         if($chapter == 'history'){
             return $this->history();
@@ -105,17 +105,6 @@ class LawController extends Controller
      * Методы возвращения данных
      *******************************************************************************************************************
      */
-
-    /**
-     * Вносит в $this данные
-     * @param $data
-     * @param string $name
-     * @return void
-     */
-    private function setData($data, string $name)
-    {
-        foreach($data as $row) $this->{$name}[$row->id] = $row;
-    }
 
     /**
      * Заменяет в переданной строке блоки ролей и каналов
