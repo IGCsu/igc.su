@@ -12,7 +12,7 @@
 
                 <b-nav-item href="https://discordapp.com/invite/htBgEU5">Discord</b-nav-item>
                 <b-nav-item href="{{ route('law') }}">Устав</b-nav-item>
-                <b-nav-item href="#">Уровни</b-nav-item>
+                <b-nav-item href="{{ route('levels') }}">Уровни</b-nav-item>
 
                 <b-nav-item-dropdown text="Выборы" right>
                     <b-dropdown-item href="#">2022-03</b-dropdown-item>

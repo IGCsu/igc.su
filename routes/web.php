@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\LawController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -19,7 +18,9 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-Route::get('/law/{chapter?}', [LawController::class, 'page'])->name('law');
+Route::get('/law/{chapter?}', [\App\Http\Controllers\LawController::class, 'page'])->name('law');
+
+Route::get('/levels', [\App\Http\Controllers\LevelsController::class, 'page'])->name('levels');
 
 //Route::post('/tokens/create', function (Request $request) {
 //    $token = $request->user()->createToken('admin');
