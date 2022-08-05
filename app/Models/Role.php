@@ -38,20 +38,4 @@ class Role extends Model
         return self::find($id);
     }
 
-    /**
-     * Возвращает данные в виде $id => $row
-     * @param string $method
-     * @return array
-     */
-    public static function list(string $method = 'all'): array
-    {
-        $data = [];
-
-        foreach(self::{$method}() as $row){
-            $data[$row->id] = $row;
-        }
-
-        return $data;
-    }
-
 }

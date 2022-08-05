@@ -54,8 +54,8 @@ class LawController extends Controller
     {
         $date = $request->query('date', null);
 
-        $this->channels = Channel::list();
-        $this->roles = Role::list();
+        $this->channels = Channel::all()->keyBy('id');
+        $this->roles = Role::all()->keyBy('id');
 
         if($chapter == 'history'){
             return $this->history();
