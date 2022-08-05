@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
             $role->id = $item['id'];
 
             $role->name = $item['name'];
-            $role->color = $item['color'];
+            $role->color = DiscordController::dec2hex($item['color']);
             $role->position = $item['position'];
 
             $role->save();

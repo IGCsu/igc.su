@@ -82,4 +82,16 @@ class DiscordController extends Controller
         return json_decode($body, true);
     }
 
+	/**
+	 * @param int $number dec Color
+	 * @return string hex Color
+	 */
+	public static function dec2hex(int $number): string
+	{
+		$color = dechex($number);
+		if(strlen($color) < 6) $color = '0'.$color;
+
+		return $color;
+	}
+
 }

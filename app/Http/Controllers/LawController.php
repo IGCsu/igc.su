@@ -131,9 +131,7 @@ class LawController extends Controller
             function($matches) use($replaceOption){
                 $id = $matches[1];
                 $type = $replaceOption ? '@' : '<i class="bi bi-at"></i>';
-                $color = dechex($this->roles[$id]->color);
-                if(strlen($color) < 6) $color = '0'.$color;
-                return '<b class="law-article-role" role="'.$id.'" style="color: #'.$color.'">'.$type.$this->roles[$id]->name.'</b>';
+                return '<b class="law-article-role" role="'.$id.'" style="color: #'.$this->roles[$id]->color.'">'.$type.$this->roles[$id]->name.'</b>';
             },
             $text
         );

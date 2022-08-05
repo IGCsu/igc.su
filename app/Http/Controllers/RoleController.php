@@ -82,7 +82,7 @@ class RoleController extends Controller
         $role->id = $id;
 
         $role->name = $request->input('name');
-        $role->color = $request->input('color');
+        $role->color = DiscordController::dec2hex($request->input('color'));
         $role->position = $request->input('position');
 
         $role->save();
