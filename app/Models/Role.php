@@ -10,6 +10,8 @@ class Role extends Model
 {
     use HasFactory;
 
+	protected $casts = ['id' => 'string'];
+
     /**
      * Возвращает экземпляр по ID, если его находит. Если нет - запрашивает его из Discord API
      * @param $id

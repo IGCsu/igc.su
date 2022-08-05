@@ -11,7 +11,8 @@ class Member extends Model
     use HasFactory;
 
     protected $casts = [
-        'roles' => 'array'
+        'roles' => 'array',
+		'id' => 'string'
     ];
 
     /**
