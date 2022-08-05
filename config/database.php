@@ -63,6 +63,26 @@ return [
             ]) : [],
         ],
 
+        'heroku' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HEROKU_HOST'),
+            'port' => env('DB_HEROKU_PORT'),
+            'database' => env('DB_HEROKU_DATABASE'),
+            'username' => env('DB_HEROKU_USERNAME'),
+            'password' => env('DB_HEROKU_PASSWORD'),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
