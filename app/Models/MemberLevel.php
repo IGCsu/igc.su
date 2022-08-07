@@ -116,7 +116,7 @@ class MemberLevel extends Model
 		$exp = $this->getExp();
 
 		foreach($roles as $role){
-			if($role->value <= $exp) return $this->data['role'] = $role;
+			if($role->exp <= $exp) return $this->data['role'] = $role;
 		}
 
 		return null;
