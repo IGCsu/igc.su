@@ -27,7 +27,7 @@ class MemberLevel extends Model
 	 * Содержит объект продвинутых данных пользователя
 	 * @var object
 	 */
-	private $data = [];
+	private $dataLevel = [];
 
 	/**
 	 * Возвращает процент оверпоста
@@ -35,12 +35,12 @@ class MemberLevel extends Model
 	 */
 	public function getOverpost(): int
 	{
-		if(isset($this->data['overpost'])) return $this->data['overpost'];
+		if(isset($this->dataLevel['overpost'])) return $this->dataLevel['overpost'];
 
 		try{
-			return $this->data['overpost'] = round( ($this->messagesAll - $this->messagesLegit) / $this->messagesLegit * 100, 1);
+			return $this->dataLevel['overpost'] = round( ($this->messagesAll - $this->messagesLegit) / $this->messagesLegit * 100, 1);
 		}catch(\Exception|\Throwable $e){
-			return $this->data['overpost'] =  0;
+			return $this->dataLevel['overpost'] =  0;
 		}
 	}
 
@@ -50,12 +50,12 @@ class MemberLevel extends Model
 	 */
 	public function getSymbolsAvg(): int
 	{
-		if(isset($this->data['symbolsAvg'])) return $this->data['symbolsAvg'];
+		if(isset($this->dataLevel['symbolsAvg'])) return $this->dataLevel['symbolsAvg'];
 
 		try{
-			return $this->data['symbolsAvg'] = round($this->symbols / $this->messagesAll, 1);
+			return $this->dataLevel['symbolsAvg'] = round($this->symbols / $this->messagesAll, 1);
 		}catch(\Exception|\Throwable $e){
-			return $this->data['symbolsAvg'] =  0;
+			return $this->dataLevel['symbolsAvg'] =  0;
 		}
 	}
 
@@ -65,12 +65,12 @@ class MemberLevel extends Model
 	 */
 	public function getActivityPer(): int
 	{
-		if(isset($this->data['activityPer'])) return $this->data['activityPer'];
+		if(isset($this->dataLevel['activityPer'])) return $this->dataLevel['activityPer'];
 
 		try{
-			return $this->data['activityPer'] = round($this->activity / 30 * 100, 1);
+			return $this->dataLevel['activityPer'] = round($this->activity / 30 * 100, 1);
 		}catch(\Exception|\Throwable $e){
-			return $this->data['activityPer'] =  0;
+			return $this->dataLevel['activityPer'] =  0;
 		}
 	}
 
@@ -80,12 +80,12 @@ class MemberLevel extends Model
 	 */
 	public function getExp(): int
 	{
-		if(isset($this->data['exp'])) return $this->data['exp'];
+		if(isset($this->dataLevel['exp'])) return $this->dataLevel['exp'];
 
 		try{
-			return $this->data['exp'] = $this->messagesLegit * $this->getSymbolsAvg() / 100 * $this->getActivityPer();
+			return $this->dataLevel['exp'] = $this->messagesLegit * $this->getSymbolsAvg() / 100 * $this->getActivityPer();
 		}catch(\Exception|\Throwable $e){
-			return $this->data['exp'] =  0;
+			return $this->dataLevel['exp'] =  0;
 		}
 	}
 
@@ -95,12 +95,12 @@ class MemberLevel extends Model
 	 */
 	public function getExpFine(): int
 	{
-		if(isset($this->data['expFine'])) return $this->data['expFine'];
+		if(isset($this->dataLevel['expFine'])) return $this->dataLevel['expFine'];
 
 		try{
-			return $this->data['expFine'] = round(100 / $this->getActivityPer() * $this->getExp() - $this->getExp());
+			return $this->dataLevel['expFine'] = round(100 / $this->getActivityPer() * $this->getExp() - $this->getExp());
 		}catch(\Exception|\Throwable $e){
-			return $this->data['expFine'] = 0;
+			return $this->dataLevel['expFine'] = 0;
 		}
 	}
 
@@ -111,12 +111,12 @@ class MemberLevel extends Model
 	 */
 	public function getRole(array $roles): ?object
 	{
-		if(isset($this->data['role'])) return $this->data['role'];
+		if(isset($this->dataLevel['role'])) return $this->dataLevel['role'];
 
 		$exp = $this->getExp();
 
 		foreach($roles as $role){
-			if($role->exp <= $exp) return $this->data['role'] = $role;
+			if($role->exp <= $exp) return $this->dataLevel['role'] = $role;
 		}
 
 		return null;
@@ -129,11 +129,11 @@ class MemberLevel extends Model
 	 */
 	public function getNextRole(array $roles): ?object
 	{
-		if(isset($this->data['nextRole'])) return $this->data['nextRole'];
+		if(isset($this->dataLevel['nextRole'])) return $this->dataLevel['nextRole'];
 
 		$role = $this->getRole($roles);
 
-		return $this->data['nextRole'] = $roles[$role->pos - 1] ?? null;
+		return $this->dataLevel['nextRole'] = $roles[$role->pos - 1] ?? null;
 	}
 
 	/**
@@ -143,7 +143,7 @@ class MemberLevel extends Model
 	 */
 	public function getNextRoleProgress(array $roles): ?int
 	{
-		if(isset($this->data['nextRoleProgress'])) return $this->data['nextRoleProgress'];
+		if(isset($this->dataLevel['nextRoleProgress'])) return $this->dataLevel['nextRoleProgress'];
 
 		$exp = $this->getExp();
 		$role = $this->getRole($roles);
@@ -152,9 +152,9 @@ class MemberLevel extends Model
 		if($nextRole == null) return null;
 
 		try{
-			return $this->data['nextRoleProgress'] = round( ( ($exp - $role->value) / ($nextRole->value - $role->value) ) * 100, 1);
+			return $this->dataLevel['nextRoleProgress'] = round( ( ($exp - $role->value) / ($nextRole->value - $role->value) ) * 100, 1);
 		}catch(\Exception|\Throwable $e){
-			return $this->data['nextRoleProgress'] = 0;
+			return $this->dataLevel['nextRoleProgress'] = 0;
 		}
 	}
 
