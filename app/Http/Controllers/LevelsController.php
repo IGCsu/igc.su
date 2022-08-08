@@ -104,6 +104,35 @@ class LevelsController extends Controller
 			$members[$sort->id]->pos = $pos + 1;
 		}
 
+		$all->messagesLegit = round($all->messagesLegit / $all->count);
+		$all->messagesAll = round($all->messagesAll / $all->count);
+		$all->activityPer = round($all->activityPer / $all->count, 1);
+		$all->symbolsAvg = round($all->symbolsAvg / $all->count, 1);
+		$all->overpost = round($all->overpost / $all->count, 1);
+		$all->symbols = round($all->symbols / $all->count);
+
+		foreach($roles as $role){
+			$role->messagesLegit = round($role->messagesLegit / $role->count);
+			$role->messagesAll = round($role->messagesAll / $role->count);
+			$role->activityPer = round($role->activityPer / $role->count, 1);
+			$role->symbolsAvg = round($role->symbolsAvg / $role->count, 1);
+			$role->overpost = round($role->overpost / $role->count, 1);
+			$role->symbols = round($role->symbols / $role->count);
+		}
+
+		foreach($members as $member){
+			$member->diff = (object) [
+				'overpost' => round($all->overpost - $member->overpost),
+				'activityPer' => round($all->activityPer - $member->activityPer),
+				'symbolsAvg' => round(($member->symbolsAvg - $all->symbolsAvg) / $all->symbolsAvg * 100, 1)
+			];
+			$member->diffRole = (object) [
+				'overpost' => round($member->role->overpost - $member->overpost),
+				'activityPer' => round($member->role->activityPer - $member->activityPer),
+				'symbolsAvg' => round(($member->symbolsAvg - $member->role->symbolsAvg) / $member->role->symbolsAvg * 100, 1)
+			];
+		}
+
 		return view('levels', [
 			'members' => Js::from($members),
 			'roles' => Js::from($roles),
