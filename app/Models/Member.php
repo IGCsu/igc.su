@@ -95,27 +95,30 @@ class Member extends Model
      */
     public static function findOrFetch($id): ?Member
     {
-        $member = self::whereId($id)->first();
+        $member = self::whereId($id)->firstOrNew();
 
-        if(!empty($member)){
+        if(!empty($member->id)){
             return $member;
         }
 
-        return self::fetch($id);
+        return self::fetch($id, $member);
     }
 
 	/**
 	 * Запрашивает из Discord API экземпляр, сохраняет его в базе и возвращает
 	 * @param $id
+	 * @param Member [$member]
 	 * @return Member|null
 	 */
-	public static function fetch($id): ?Member
+	public static function fetch($id, $member = null): ?Member
 	{
 		$data = DiscordController::getData('/members/'.$id);
 
 		if(!$data) return null;
 
-		$member = self::whereId($id)->firstOrNew();
+		if(!$member){
+			$member = self::whereId($id)->firstOrNew();
+		}
 
 		$member->id = $data['user']['id'];
 
