@@ -39,16 +39,12 @@ class Role extends Model
 
 		if(!$data) return null;
 
-		$role = new self;
+		$role = self::whereId($id)->firstOrNew();;
 
-		$data = DiscordController::getData('/roles/'.$id);
-
-		if(!$data) return null;
-
-		$role->id = $data['user']['id'];
+		$role->id = $data['id'];
 
 		$role->name = $data['name'];
-		$role->color = $data['color'];
+		$role->color = DiscordController::dec2hex($data['color']);
 		$role->position = $data['position'];
 
 		$role->save();

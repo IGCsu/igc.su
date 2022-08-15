@@ -115,7 +115,7 @@ class Member extends Model
 
 		if(!$data) return null;
 
-		$member = new self;
+		$member = self::whereId($id)->firstOrNew();
 
 		$member->id = $data['user']['id'];
 
