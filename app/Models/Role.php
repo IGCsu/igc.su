@@ -36,7 +36,7 @@ class Role extends Model
 	 */
 	public static function fetch($id, $role = null): ?Role
 	{
-		$data = DiscordController::getData('/roles/'.$id);
+		$data = DiscordController::getGuildData('/roles/'.$id);
 
 		if(!$data) return null;
 

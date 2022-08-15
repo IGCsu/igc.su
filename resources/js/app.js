@@ -22,17 +22,45 @@ const app = new Vue({
 
 	data: {
 
-		memberUpdateTimeout: 0,
+		/**
+		 * ID таймаута обновления
+		 * @type {NodeJS.Timeout}
+		 */
+		memberUpdateTimeoutId: undefined,
+
+		/**
+		 * Список обновляемых участников
+		 * @type {Set}
+		 */
 		memberUpdateData: new Set(),
 
 	},
 
 	methods: {
 
-		memberUpdate: function(e){
-			axios.get('/api/').then(response => {
-				console.log(response);
-			});
+		memberUpdate: function(e, members){
+			clearInterval(this.memberUpdateTimeoutId);
+
+			e.target.src = '/images/loading2.gif';
+
+			this.memberUpdateData.add(e.target.getAttribute('user'));
+
+			this.memberUpdateTimeoutId = setTimeout(() => {
+				axios.post('/membersUpdate', {
+					members: Array.from(this.memberUpdateData)
+				}).then(res => {
+					console.log(res)
+					for(const member of res.data.members){
+						members[member.id].name = member.name;
+						members[member.id].discriminator = member.discriminator;
+						members[member.id].avatar = member.avatar;
+						members[member.id].search = member.search;
+					}
+				}).catch(error => {
+					console.log(error.response);
+				});
+			}, 2000);
+
 		}
 
 	}

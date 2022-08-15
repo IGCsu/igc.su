@@ -35,3 +35,5 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/auth/discord/callback', [AuthController::class, 'callback'])->name('auth.callback');
 Route::get('/auth/closed', function(){ return view('welcome'); })->name('auth.closed');
+
+Route::post('/membersUpdate', [\App\Http\Controllers\MemberController::class, 'fetch'])->name('membersUpdate');

@@ -13,35 +13,38 @@ class DiscordController extends Controller
      */
     private static $client;
 
-    /**
-     * Возвращает массив объектов каналов сообщества
-     * @return array {@link https://discord.com/developers/docs/resources/channel#channel-object}
-     */
+	/**
+	 * Возвращает массив объектов каналов сообщества
+	 * @return array {@link https://discord.com/developers/docs/resources/channel#channel-object}
+	 * @throws GuzzleHttp\Exception\GuzzleException
+	 */
     public static function getChannels(): array
     {
-        return self::getData('/channels');
+        return self::getGuildData('/channels');
     }
 
-    /**
-     * Возвращает массив объектов ролей сообщества
-     * @return array {@link https://discord.com/developers/docs/topics/permissions#role-object}
-     */
+	/**
+	 * Возвращает массив объектов ролей сообщества
+	 * @return array {@link https://discord.com/developers/docs/topics/permissions#role-object}
+	 * @throws GuzzleHttp\Exception\GuzzleException
+	 */
     public static function getRoles(): array
     {
-        return self::getData('/roles');
+        return self::getGuildData('/roles');
     }
 
-    /**
-     * Возвращает массив объектов участников сообщества
-     * @return array {@link https://discord.com/developers/docs/resources/guild#guild-member-object}
-     */
+	/**
+	 * Возвращает массив объектов участников сообщества
+	 * @return array {@link https://discord.com/developers/docs/resources/guild#guild-member-object}
+	 * @throws GuzzleHttp\Exception\GuzzleException
+	 */
     public static function getMembers(): array
     {
         $members = [];
         $last = 0;
 
         while(true){
-            $data = self::getData('/members?limit=1000&after='.$last);
+            $data = self::getGuildData('/members?limit=1000&after='.$last);
 
             $members = array_merge($members, $data);
             $last = $data[array_key_last($data)];
@@ -68,19 +71,31 @@ class DiscordController extends Controller
         ]);
     }
 
-    /**
-     * Выполняет запрос и возвращает данные
-     * @param string $url
-     * @return array
-     */
-    public static function getData(string $url): array
+	/**
+	 * Выполняет запрос и возвращает данные
+	 * @param string $url
+	 * @return array
+	 * @throws GuzzleHttp\Exception\GuzzleException
+	 */
+    public static function getGuildData(string $url): array
     {
-        $body = self::getGuzzleClient()
-            ->get('https://discord.com/api/v9/guilds/'.env('DISCORD_GUILD_ID').$url)
-            ->getBody();
-
-        return json_decode($body, true);
+		return self::getData('/guilds/'.env('DISCORD_GUILD_ID').$url);
     }
+
+	/**
+	 * Выполняет запрос и возвращает данные
+	 * @param string $url
+	 * @return array
+	 * @throws GuzzleHttp\Exception\GuzzleException
+	 */
+	public static function getData(string $url): array
+	{
+		$body = self::getGuzzleClient()
+			->get('https://discord.com/api/v9'.$url)
+			->getBody();
+
+		return json_decode($body, true);
+	}
 
 	/**
 	 * @param int $number dec Color

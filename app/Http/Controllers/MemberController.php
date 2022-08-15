@@ -107,6 +107,26 @@ class MemberController extends Controller
         ], 501);
     }
 
+	/**
+	 * Обновление участников сообщества
+	 * @param Request $request
+	 * @return JsonResponse
+	 */
+	public function fetch(Request $request): JsonResponse
+	{
+		$members = $request->input('members');
+
+		foreach($members as $i => $id){
+			$member = Member::fetch($id);
+			if($member !== null) $members[$i] = $member;
+			sleep(1);
+		}
+
+		return response()->json([
+			'members' => $members
+		], 200);
+	}
+
 
 
 }

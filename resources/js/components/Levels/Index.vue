@@ -115,12 +115,12 @@
 			<template v-for="(id, i) in list">
 
 				<levels-separator
-					v-if="sortGroup && (!members[list[i-1]] || members[id].role.id !== members[list[i-1]].role.id)"
-					v-bind:role="members[id].role"
+					v-if="sortGroup && (!localMembers[list[i-1]] || localMembers[id].role.id !== localMembers[list[i-1]].role.id)"
+					v-bind:role="localMembers[id].role"
 				></levels-separator>
 
 				<levels-member
-					v-bind:member="members[id]"
+					v-bind:member="localMembers[id]"
 					v-bind:sort-group="sortGroup"
 					@memberUpdate="memberUpdate"
 				></levels-member>
@@ -196,6 +196,8 @@ export default {
 				(a, b) => b - a,
 				(a, b) => a - b
 			],
+
+			localMembers: this.members
 
 		}
 	},
@@ -301,7 +303,7 @@ export default {
 		},
 
 		memberUpdate: function(e){
-			this.$parent.memberUpdate(e, this.members);
+			this.$parent.memberUpdate(e, this.localMembers);
 		}
 
 	}

@@ -25,7 +25,7 @@ class Channel extends Model
             return $role;
         }
 
-        $data = DiscordController::getData('/channels/'.$id);
+        $data = DiscordController::getGuildData('/channels/'.$id);
 
         if(!$data) return null;
 

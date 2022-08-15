@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\DiscordController;
@@ -88,20 +89,20 @@ class Member extends Model
         return Role::find($this->headRole);
     }
 
-    /**
-     * Возвращает экземпляр по ID, если его находит. Если нет - запрашивает его из Discord API
-     * @param $id
-     * @return Member|null
-     */
+	/**
+	 * Возвращает экземпляр по ID, если его находит. Если нет - запрашивает его из Discord API
+	 * @param $id
+	 * @return Member|null
+	 */
     public static function findOrFetch($id): ?Member
     {
-        $member = self::whereId($id)->firstOrNew();
+		$member = self::whereId($id)->firstOrNew();
 
-        if(!empty($member->id)){
+        if(!empty($member) || !empty($member->id)){
             return $member;
         }
 
-        return self::fetch($id, $member);
+		return self::fetch($id, $member);
     }
 
 	/**
@@ -112,27 +113,43 @@ class Member extends Model
 	 */
 	public static function fetch($id, $member = null): ?Member
 	{
-		$data = DiscordController::getData('/members/'.$id);
-
-		if(!$data) return null;
+		try{
+			$data = DiscordController::getGuildData('/members/'.$id);
+		}catch(GuzzleException $e){
+			try{
+				$data = DiscordController::getData('/users/'.$id);
+			}catch(GuzzleException $e){
+				return null;
+			}
+		}
 
 		if(!$member){
 			$member = self::whereId($id)->firstOrNew();
 		}
 
-		$member->id = $data['user']['id'];
+		if(empty($data['user'])){
+			$member->id = $data['id'];
+			$member->name = $data['username'];
+			$member->discriminator = $data['discriminator'];
+			$member->roles = [];
 
-		$member->name = $data['nick'] ?? $data['user']['username'];
-		$member->discriminator = $data['user']['discriminator'];
-		$member->roles = $data['roles'];
+			$member->generateAvatar(null, $data['avatar']);
+		}else{
+			$member->id = $data['user']['id'];
+			$member->name = $data['nick'] ?? $data['user']['username'];
+			$member->discriminator = $data['user']['discriminator'];
+			$member->roles = $data['roles'];
 
-		$member->generateAvatar($data['avatar']);
+			$member->generateAvatar($data['avatar'], $data['user']['avatar']);
+		}
+
+
 		$member->generateHeadRole();
 		$member->generateSearch();
 
 		$member->save();
 
-		return self::find($id);
+		return $member;
 	}
 
 }
