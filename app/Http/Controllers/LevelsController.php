@@ -16,8 +16,6 @@ class LevelsController extends Controller
 	 * @throws \JsonException
 	 */
 	public function page(){
-		$member = new Member;
-
 		$membersRaw = Member::all()->keyBy('id');
 		$rolesRaw = Role::all()->keyBy('id');
 		$membersLevels = MemberLevel::where([

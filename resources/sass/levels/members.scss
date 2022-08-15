@@ -96,30 +96,6 @@
 		}
 	}
 
-	#levels-list > .separator {
-		box-shadow: 0 2px 3px -1px #0001;
-		font-weight: 900;
-		position: sticky;
-		font-size: 13px;
-		height: 38px;
-		color: #000c;
-		z-index: 2;
-		margin: 0;
-	}
-
-	#levels-list > .separator .separator-data > .row {
-		align-items: center;
-	}
-	#levels-list > .separator .separator-data > .row > div {
-		text-align: center;
-		line-height: 18px;
-		font-size: 13px;
-		padding: 0 5px;
-	}
-	@media(min-width: 576px){
-		#levels-list > .separator { height: 18px; }
-	}
-
 	.row {
 		align-items: center;
 		margin: 0;

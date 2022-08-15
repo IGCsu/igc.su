@@ -114,11 +114,10 @@
 
 			<template v-for="(id, i) in list">
 
-				<div
+				<levels-separator
 					v-if="sortGroup && (!members[list[i-1]] || members[id].role.id !== members[list[i-1]].role.id)"
-				>
-					separator
-				</div>
+					v-bind:role="members[id].role"
+				></levels-separator>
 
 				<levels-member
 					v-bind:member="members[id]"
@@ -144,13 +143,54 @@ export default {
 
 	data(){
 		return {
+
+			/**
+			 * Раскрытие описания алгоритма
+			 * @type {boolean}
+			 */
 			levelsText: false,
+
+			/**
+			 * Отсортированный список ID пользователей
+			 * @type {String[]}
+			 */
 			listRaw: [],
+
+			/**
+			 * Фрагмент списка ID пользователей, выведенных на экран
+			 * @type {String[]}
+			 */
 			list: [],
 
+			/** --- **/
+
+			/**
+			 * Группировка списка
+			 * 0 - группировка отключена
+			 * 1 - группировка по убыванию
+			 * 2 - группировка по возрастанию
+			 * @type {number}
+			 */
 			sortGroup: 1,
+
+			/**
+			 * Поле сортировки
+			 * @type {string}
+			 */
 			sortTarget: 'exp',
+
+			/**
+			 * Значение сортировки
+			 * 0 - сортировка по убыванию
+			 * 1 - сортировка по возрастанию
+			 * @type {number}
+			 */
 			sortVal: 0,
+
+			/**
+			 * Функции сортировки. Используется значение this.sortVal
+			 * @type {function[]}
+			 */
 			sortFunc: [
 				(a, b) => b - a,
 				(a, b) => a - b
@@ -170,6 +210,10 @@ export default {
 	},
 
 	methods: {
+
+		/**
+		 * Обновление списка участников
+		 */
 		updateList: function(){
 			this.listRaw = [];
 			this.list = [];
@@ -186,11 +230,13 @@ export default {
 				this.listRaw.push(id);
 			}
 
-			this.listRaw.sort(this.sortListItem);
-
+			this.sortList();
 			this.addList();
 		},
 
+		/**
+		 * Добавляет в отрисовываемый список 20 участников
+		 */
 		addList: function(){
 			const qty = this.list.length;
 			let i = -1;
@@ -203,17 +249,26 @@ export default {
 			}
 		},
 
-		sortListItem: function(a, b){
-			a = this.members[a];
-			b = this.members[b];
+		/**
+		 * Сортирует список участников
+		 */
+		sortList: function(){
+			this.listRaw.sort((a, b) => {
+				a = this.members[a];
+				b = this.members[b];
 
-			if(this.sortGroup){
-				if(a.role.pos > b.role.pos) return this.sortGroup === 2 ? -1 : 1;
-				if(a.role.pos < b.role.pos) return this.sortGroup === 2 ? 1 : -1;
-			}
-			return this.sortFunc[this.sortVal](a[this.sortTarget], b[this.sortTarget]);
+				if(this.sortGroup){
+					if(a.role.pos > b.role.pos) return this.sortGroup === 2 ? -1 : 1;
+					if(a.role.pos < b.role.pos) return this.sortGroup === 2 ? 1 : -1;
+				}
+
+				return this.sortFunc[this.sortVal](a[this.sortTarget], b[this.sortTarget]);
+			});
 		},
 
+		/**
+		 * Переключает группировку списка
+		 */
 		sortGroupToggle: function(){
 			for(let i = 0; i < 3; i++){
 				if(this.sortGroup !== i) continue;
@@ -223,6 +278,10 @@ export default {
 			this.updateList();
 		},
 
+		/**
+		 * Переключает сортировку списка
+		 * @param {string} target Поле сортировки списка
+		 */
 		sortToggle: function(target){
 			if(this.sortTarget !== target){
 				this.sortTarget = target;
@@ -233,6 +292,9 @@ export default {
 			this.updateList();
 		},
 
+		/**
+		 * Переключает описание алгоритма
+		 */
 		levelsTextToggle: function(){
 			this.levelsText = !this.levelsText;
 		}

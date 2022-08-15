@@ -1,0 +1,36 @@
+&-separator {
+	position: sticky;
+	height: 38px;
+	z-index: 2;
+	margin: 0;
+
+	box-shadow: 0 2px 3px -1px #0001;
+	line-height: 1;
+
+	font-weight: 900;
+	font-size: 13px;
+	color: #000c;
+
+
+	&-data > .row {
+		align-items: center;
+
+		& > div {
+			text-align: center;
+			line-height: 18px;
+			font-size: 13px;
+			padding: 0 5px;
+		}
+
+		@media (min-width: 576px){
+			.col-sm-2 {
+				flex: 0 0 14.2857142857%;
+				max-width: 14.2857142857%;
+			}
+		}
+	}
+
+	@media(min-width: 576px){
+		height: 18px;
+	}
+}
