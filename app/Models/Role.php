@@ -25,19 +25,35 @@ class Role extends Model
             return $role;
         }
 
-        $data = DiscordController::getData('/roles/'.$id);
-
-        if(!$data) return null;
-
-        $role->id = $data['user']['id'];
-
-        $role->name = $data['name'];
-        $role->color = $data['color'];
-        $role->position = $data['position'];
-
-        $role->save();
-
-        return self::find($id);
+        return self::fetch($id);
     }
+
+	/**
+	 * Запрашивает из Discord API экземпляр, сохраняет его в базе и возвращает
+	 * @param $id
+	 * @return Member|null
+	 */
+	public static function fetch($id): ?Role
+	{
+		$data = DiscordController::getData('/roles/'.$id);
+
+		if(!$data) return null;
+
+		$role = new self;
+
+		$data = DiscordController::getData('/roles/'.$id);
+
+		if(!$data) return null;
+
+		$role->id = $data['user']['id'];
+
+		$role->name = $data['name'];
+		$role->color = $data['color'];
+		$role->position = $data['position'];
+
+		$role->save();
+
+		return self::find($id);
+	}
 
 }

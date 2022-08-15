@@ -95,29 +95,41 @@ class Member extends Model
      */
     public static function findOrFetch($id): ?Member
     {
-        $member = self::whereId($id)->firstOrNew();
+        $member = self::whereId($id)->first();
 
-        if(!empty($member->id)){
+        if(!empty($member)){
             return $member;
         }
 
-        $data = DiscordController::getData('/members/'.$id);
-
-        if(!$data) return null;
-
-        $member->id = $data['user']['id'];
-
-        $member->name = $data['nick'] ?? $data['user']['username'];
-        $member->discriminator = $data['user']['discriminator'];
-        $member->roles = $data['roles'];
-
-        $member->generateAvatar($data['avatar']);
-        $member->generateHeadRole();
-        $member->generateSearch();
-
-        $member->save();
-
-        return self::find($id);
+        return self::fetch($id);
     }
+
+	/**
+	 * Запрашивает из Discord API экземпляр, сохраняет его в базе и возвращает
+	 * @param $id
+	 * @return Member|null
+	 */
+	public static function fetch($id): ?Member
+	{
+		$data = DiscordController::getData('/members/'.$id);
+
+		if(!$data) return null;
+
+		$member = new self;
+
+		$member->id = $data['user']['id'];
+
+		$member->name = $data['nick'] ?? $data['user']['username'];
+		$member->discriminator = $data['user']['discriminator'];
+		$member->roles = $data['roles'];
+
+		$member->generateAvatar($data['avatar']);
+		$member->generateHeadRole();
+		$member->generateSearch();
+
+		$member->save();
+
+		return self::find($id);
+	}
 
 }
