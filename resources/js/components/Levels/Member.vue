@@ -39,7 +39,7 @@
 
 					<div class="levels-members-overpost col-sm-2 d-none d-sm-block">
 						<b>Overpost</b>
-						{{ member.overpost > 0 ? member.overpost : 'NaN' }}
+						{{ member.overpost > 0 ? member.overpost + '%' : 'NaN' }}
 						<small v-if="member.overpost > 0" :class="getDiffClass('overpost', 'minus', 'plus')">
 							{{ getAbsDiff('overpost') }}%
 						</small>

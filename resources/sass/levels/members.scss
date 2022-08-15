@@ -204,6 +204,15 @@
 
 			}
 
+			& > .levels-members-overpost {
+				small.minus {
+					color: #30bf50;
+				}
+				small.plus {
+					color: #ff818d;
+				}
+			}
+
 			.col-sm-2 {
 				@media (min-width: 576px){
 					-ms-flex: 0 0 14.285714285714286%;
