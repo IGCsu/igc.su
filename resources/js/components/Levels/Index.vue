@@ -56,38 +56,73 @@
 
 		<div class="levels-roles">
 
-			<div class="levels-roles-head row">
-				<div class="col-3">Роль</div>
-				<div class="col-2">Опыт</div>
-				<div class="col-2">Кол-во юзеров</div>
-				<div class="col-5">
-					<div>Средние показатели</div>
-					<div class="row">
-						<div class="col-sm-2 d-none d-sm-block">Всего сообщений</div>
-						<div class="col-sm-2 col-6">Засчитанных сообщений</div>
-						<div class="col-sm-2 d-none d-sm-block">Процент оверпоста</div>
-						<div class="col-sm-2 col-6">Всего символов</div>
-						<div class="col-sm-2 d-none d-sm-block">Среднее кол-во символов</div>
-						<div class="col-sm-2 d-none d-sm-block">Активность</div>
-					</div>
-				</div>
-			</div>
+			<levels-role
+				type="head"
+				name="Роль"
+				exp="Опыт"
+				count="Кол-во юзеров"
+				messagesAll="Всего сообщений"
+				messagesLegit="Засчитанных сообщений"
+				overpost="Процент оверпоста"
+				symbols="Всего символов"
+				symbolsAvg="Среднее кол-во символов"
+				activityPer="Активность"
+			></levels-role>
 
-			<div class="levels-roles-list">
-				<levels-role
-					v-for="role in roles"
-					v-bind:key="role.id"
-					v-bind:name="'@' + role.name"
-					v-bind:exp="role.exp"
-					v-bind:count="0"
-				></levels-role>
-			</div>
+			<levels-role
+				v-for="role in roles"
+				v-bind:key="role.id"
+				type="item"
+				v-bind:name="'@' + role.name"
+				v-bind:exp="role.exp.toLocaleString()"
+				v-bind:count="role.count.toLocaleString()"
+				v-bind:messages-all="role.messagesAll.toLocaleString()"
+				v-bind:messages-legit="role.messagesLegit.toLocaleString()"
+				v-bind:overpost="role.overpost + '%'"
+				v-bind:symbols="role.symbols.toLocaleString()"
+				v-bind:symbols-avg="role.symbolsAvg"
+				v-bind:activity-per="role.activityPer + '%'"
+				v-bind:color="role.color"
+			></levels-role>
+
+			<levels-role
+				type="footer"
+				name="Общие данные"
+				v-bind:count="all.count.toLocaleString()"
+				v-bind:messages-all="all.messagesAll.toLocaleString()"
+				v-bind:messages-legit="all.messagesLegit.toLocaleString()"
+				v-bind:overpost="all.overpost + '%'"
+				v-bind:symbols="all.symbols.toLocaleString()"
+				v-bind:symbols-avg="all.symbolsAvg"
+				v-bind:activity-per="all.activityPer + '%'"
+			></levels-role>
 
 		</div>
 
-		<div id="levels-clear">clear</div>
+		<div class="levels-clear"></div>
 
-		<div id="levels-members">{{ onload() }}</div>
+		<div class="levels-members">
+
+			<levels-member-head
+
+			></levels-member-head>
+
+			<template v-for="(id, i) in list">
+
+				<div
+					v-if="sortGroup && (!members[list[i-1]] || members[id].role.id !== members[list[i-1]].role.id)"
+				>
+					separator
+				</div>
+
+				<levels-member
+					v-bind:member="members[id]"
+					v-bind:sort-group="sortGroup"
+				></levels-member>
+
+			</template>
+
+		</div>
 
 	</div>
 
@@ -104,20 +139,77 @@ export default {
 
 	data(){
 		return {
-			levelsText: false
+			levelsText: false,
+			listRaw: [],
+			list: [],
+
+			sortGroup: 1,
+			sortTarget: 'exp',
+			sortVal: 0,
+			sortFunc: [
+				(a, b) => b - a,
+				(a, b) => a - b
+			],
+
 		}
 	},
 
+	mounted: function(){
+		this.updateList();
+		this.addList();
+		console.log(this);
+
+		document.addEventListener('scroll', () => {
+			let bottom = document.documentElement.getBoundingClientRect().bottom;
+			if(bottom < document.documentElement.clientHeight + 100) this.addList();
+		}, true);
+	},
+
 	methods: {
+		updateList: function(){
+			this.listRaw = [];
+			this.list = [];
+
+			for(const id in this.members){
+				const member = this.members[id];
+				let access = true;
+
+				// for(const value of this.searchVal)
+				// 	if(member.search.indexOf(value) === -1) access = false;
+
+				if(!access) continue;
+
+				this.listRaw.push(id);
+			}
+
+			this.listRaw.sort(this.sortListItem);
+		},
+
+		addList: function(){
+			const qty = this.list.length;
+			let i = -1;
+
+			for(const id of this.listRaw){
+				++i;
+				if(this.list[i]) continue;
+				this.list.push(id);
+				if(i - qty > 20) break;
+			}
+		},
+
+		sortListItem: function(a, b){
+			a = this.members[a];
+			b = this.members[b];
+
+			if(this.sortGroup){
+				if(a.level < b.level) return this.sortGroup === 2 ? -1 : 1;
+				if(a.level > b.level) return this.sortGroup === 2 ? 1 : -1;
+			}
+			return this.sortFunc[this.sortVal](a[this.sortTarget], b[this.sortTarget]);
+		},
 
 		levelsTextToggle: function(){
 			this.levelsText = !this.levelsText;
-		},
-
-		onload: function(){
-			console.log(this.members);
-			console.log(this.roles);
-			console.log(this.all);
 		}
 	}
 
