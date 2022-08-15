@@ -152,7 +152,7 @@ class MemberLevel extends Model
 		if($nextRole == null) return null;
 
 		try{
-			return $this->dataLevel['nextRoleProgress'] = round( ( ($exp - $role->value) / ($nextRole->value - $role->value) ) * 100, 1);
+			return $this->dataLevel['nextRoleProgress'] = round( ( ($exp - $role->exp) / ($nextRole->exp - $role->exp) ) * 100, 1);
 		}catch(\Exception|\Throwable $e){
 			return $this->dataLevel['nextRoleProgress'] = 0;
 		}
