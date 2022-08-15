@@ -122,6 +122,7 @@
 				<levels-member
 					v-bind:member="members[id]"
 					v-bind:sort-group="sortGroup"
+					@memberUpdate="memberUpdate"
 				></levels-member>
 
 			</template>
@@ -297,7 +298,12 @@ export default {
 		 */
 		levelsTextToggle: function(){
 			this.levelsText = !this.levelsText;
+		},
+
+		memberUpdate: function(e){
+			this.$parent.memberUpdate(e, this.members);
 		}
+
 	}
 
 }

@@ -19,6 +19,23 @@ files.keys().map(key => {
 
 const app = new Vue({
     el: '#app',
+
+	data: {
+
+		memberUpdateTimeout: 0,
+		memberUpdateData: new Set(),
+
+	},
+
+	methods: {
+
+		memberUpdate: function(e){
+			axios.get('/api/').then(response => {
+				console.log(response);
+			});
+		}
+
+	}
 });
 
 import './loader';
