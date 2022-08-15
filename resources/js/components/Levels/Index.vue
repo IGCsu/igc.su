@@ -217,9 +217,7 @@ export default {
 		sortGroupToggle: function(){
 			for(let i = 0; i < 3; i++){
 				if(this.sortGroup !== i) continue;
-				this.sortGroup = true
-					? (i >= 2 ? 0 : i + 1)
-					: (i <= 0 ? 2 : i - 1);
+				this.sortGroup = i >= 2 ? 0 : i + 1;
 				break;
 			}
 			this.updateList();
