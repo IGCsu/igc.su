@@ -8,7 +8,13 @@
 						<div :style="'background: #' + member.role.color">{{ member.pos }}</div>
 					</div>
 					<div class="levels-members-name col">
-						<img :src="'https://cdn.discordapp.com/' + member.avatar" loading="lazy" :alt="member.name + '#' + member.id"/>
+						<img
+							:src="'https://cdn.discordapp.com/' + member.avatar"
+							:alt="member.name + '#' + member.id"
+							:user="member.id"
+							@error="$emit('memberUpdate', $event)"
+							loading="lazy"
+						/>
 						<div>
 							<small :style="'color: #' + member.role.color">{{ member.role.name }}</small>
 							{{ member.name }}

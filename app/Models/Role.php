@@ -25,21 +25,24 @@ class Role extends Model
             return $role;
         }
 
-        return self::fetch($id);
+        return self::fetch($id, $role);
     }
 
 	/**
 	 * Запрашивает из Discord API экземпляр, сохраняет его в базе и возвращает
 	 * @param $id
-	 * @return Member|null
+	 * @param Role [$role]
+	 * @return Role|null
 	 */
-	public static function fetch($id): ?Role
+	public static function fetch($id, $role = null): ?Role
 	{
 		$data = DiscordController::getData('/roles/'.$id);
 
 		if(!$data) return null;
 
-		$role = self::whereId($id)->firstOrNew();;
+		if(!$role){
+			$role = self::whereId($id)->firstOrNew();
+		}
 
 		$role->id = $data['id'];
 
