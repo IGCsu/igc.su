@@ -8,39 +8,39 @@ use Illuminate\Database\Eloquent\Model;
 
 class Channel extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
 	protected $casts = ['id' => 'string'];
 
-    /**
-     * Возвращает экземпляр по ID, если его находит. Если нет - запрашивает его из Discord API
-     * @param $id
-     * @return Channel|null
-     */
-    public static function findOrFetch($id): ?Channel
-    {
-        $channel = self::whereId($id)->firstOrNew();
+	/**
+	 * Возвращает экземпляр по ID, если его находит. Если нет - запрашивает его из Discord API
+	 * @param $id
+	 * @return Channel|null
+	 */
+	public static function findOrFetch($id): ?Channel
+	{
+		$channel = self::whereId($id)->firstOrNew();
 
-        if(!empty($role->id)){
-            return $role;
-        }
+		if(!empty($role->id)){
+			return $role;
+		}
 
-        $data = DiscordController::getGuildData('/channels/'.$id);
+		$data = DiscordController::getGuildData('/channels/'.$id);
 
-        if(!$data) return null;
+		if(!$data) return null;
 
-        $channel->id = $data['user']['id'];
+		$channel->id = $data['user']['id'];
 
-        $channel->type = $data['id'];
-        $channel->position = $data['position'];
-        $channel->name = $data['name'];
-        $channel->topic = $data['topic'];
-        $channel->nsfw = $data['nsfw'];
-        $channel->parent_id = $data['parent_id'];
+		$channel->type = $data['id'];
+		$channel->position = $data['position'];
+		$channel->name = $data['name'];
+		$channel->topic = $data['topic'];
+		$channel->nsfw = $data['nsfw'];
+		$channel->parent_id = $data['parent_id'];
 
-        $channel->save();
+		$channel->save();
 
-        return self::find($id);
-    }
+		return self::find($id);
+	}
 
 }

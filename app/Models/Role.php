@@ -8,25 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
 	protected $casts = ['id' => 'string'];
 
-    /**
-     * Возвращает экземпляр по ID, если его находит. Если нет - запрашивает его из Discord API
-     * @param $id
-     * @return Role|null
-     */
-    public static function findOrFetch($id): ?Role
-    {
-        $role = self::whereId($id)->firstOrNew();
+	/**
+	 * Возвращает экземпляр по ID, если его находит. Если нет - запрашивает его из Discord API
+	 * @param $id
+	 * @return Role|null
+	 */
+	public static function findOrFetch($id): ?Role
+	{
+		$role = self::whereId($id)->firstOrNew();
 
-        if(!empty($role->id)){
-            return $role;
-        }
+		if(!empty($role->id)){
+			return $role;
+		}
 
-        return self::fetch($id, $role);
-    }
+		return self::fetch($id, $role);
+	}
 
 	/**
 	 * Запрашивает из Discord API экземпляр, сохраняет его в базе и возвращает

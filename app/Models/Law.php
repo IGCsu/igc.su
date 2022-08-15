@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Law extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
 	protected $casts = ['id' => 'string'];
 }

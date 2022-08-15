@@ -10,56 +10,56 @@ use Laravel\Socialite\Facades\Socialite;
 class AuthController extends Controller
 {
 
-    /**
-     * Перенаправляет запрос к Дискорду
-     * @param Request $request
-     */
-    public function login(Request $request){
-        $last = $request->server('HTTP_REFERER');
-        if($last) session(['return' => $last]);
+	/**
+	 * Перенаправляет запрос к Дискорду
+	 * @param Request $request
+	 */
+	public function login(Request $request){
+		$last = $request->server('HTTP_REFERER');
+		if($last) session(['return' => $last]);
 
-        return Socialite::driver('discord')->redirect();
-    }
+		return Socialite::driver('discord')->redirect();
+	}
 
-    /**
-     * Принятие запроса от Дискорда
-     */
-    public function callback(){
-        $user = Socialite::driver('discord')->stateless()->user();
+	/**
+	 * Принятие запроса от Дискорда
+	 */
+	public function callback(){
+		$user = Socialite::driver('discord')->stateless()->user();
 
-        $finduser = User::where('discord_id', $user->id)->first();
+		$finduser = User::where('discord_id', $user->id)->first();
 
-        if(!$finduser){
-            $finduser = new User();
+		if(!$finduser){
+			$finduser = new User();
 
-            $finduser->name = $user->name;
-            $finduser->email = $user->email;
-            $finduser->discord_id = $user->id;
-            $finduser->password = 'discord';
+			$finduser->name = $user->name;
+			$finduser->email = $user->email;
+			$finduser->discord_id = $user->id;
+			$finduser->password = 'discord';
 
-            $finduser->save();
-        }elseif($finduser->name != $user->name){
-            $finduser->name = $user->name;
-            $finduser->save();
-        }
+			$finduser->save();
+		}elseif($finduser->name != $user->name){
+			$finduser->name = $user->name;
+			$finduser->save();
+		}
 
-        Auth::login($finduser, true);
+		Auth::login($finduser, true);
 
-        return redirect(session('return', '/'));
-    }
+		return redirect(session('return', '/'));
+	}
 
-    /**
-     * Выход
-     * @param Request $request
-     */
-    public function logout(Request $request){
-        Auth::logout();
+	/**
+	 * Выход
+	 * @param Request $request
+	 */
+	public function logout(Request $request){
+		Auth::logout();
 
-        $request->session()->invalidate();
+		$request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+		$request->session()->regenerateToken();
 
-        return redirect('/');
-    }
+		return redirect('/');
+	}
 
 }

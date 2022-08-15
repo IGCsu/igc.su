@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RoleLevel extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
 	protected $connection= 'heroku';
 

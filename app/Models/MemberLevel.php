@@ -9,11 +9,11 @@ use Whoops\Exception\ErrorException;
 
 class MemberLevel extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    protected $connection= 'heroku';
+	protected $connection= 'heroku';
 
-    protected $table = 'levels';
+	protected $table = 'levels';
 
 	protected $casts = ['id' => 'string'];
 
