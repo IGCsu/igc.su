@@ -15,12 +15,12 @@
 	}
 
 	&-clear {
-		background: #2f3136;
+		background: $dark0;
 		position: sticky;
 		margin: 0 -2px;
-		height: 20px;
+		height: 2rem;
 		z-index: 2;
-		top: 40px;
+		top: $navbar;
 	}
 
 }

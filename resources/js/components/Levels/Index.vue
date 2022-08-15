@@ -104,7 +104,12 @@
 		<div class="levels-members">
 
 			<levels-member-head
-
+				search=""
+				v-bind:sort-group="sortGroup"
+				v-bind:sort-target="sortTarget"
+				v-bind:sort-val="sortVal"
+				@sortGroupToggle="sortGroupToggle"
+				@sortToggle="sortToggle"
 			></levels-member-head>
 
 			<template v-for="(id, i) in list">
@@ -156,7 +161,6 @@ export default {
 
 	mounted: function(){
 		this.updateList();
-		this.addList();
 		console.log(this);
 
 		document.addEventListener('scroll', () => {
@@ -183,6 +187,8 @@ export default {
 			}
 
 			this.listRaw.sort(this.sortListItem);
+
+			this.addList();
 		},
 
 		addList: function(){
@@ -202,10 +208,31 @@ export default {
 			b = this.members[b];
 
 			if(this.sortGroup){
-				if(a.level < b.level) return this.sortGroup === 2 ? -1 : 1;
-				if(a.level > b.level) return this.sortGroup === 2 ? 1 : -1;
+				if(a.role.pos > b.role.pos) return this.sortGroup === 2 ? -1 : 1;
+				if(a.role.pos < b.role.pos) return this.sortGroup === 2 ? 1 : -1;
 			}
 			return this.sortFunc[this.sortVal](a[this.sortTarget], b[this.sortTarget]);
+		},
+
+		sortGroupToggle: function(){
+			for(let i = 0; i < 3; i++){
+				if(this.sortGroup !== i) continue;
+				this.sortGroup = true
+					? (i >= 2 ? 0 : i + 1)
+					: (i <= 0 ? 2 : i - 1);
+				break;
+			}
+			this.updateList();
+		},
+
+		sortToggle: function(target){
+			if(this.sortTarget !== target){
+				this.sortTarget = target;
+				this.sortVal = 0;
+			}else{
+				this.sortVal = this.sortVal ? 0 : 1;
+			}
+			this.updateList();
 		},
 
 		levelsTextToggle: function(){
