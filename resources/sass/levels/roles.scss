@@ -1,0 +1,55 @@
+&-roles {
+	width: 100%;
+
+	border-radius: 0.375rem;
+	background: $dark1;
+
+	text-align: center;
+	font-size: 12px;
+
+	.row {
+		align-items: center;
+		margin: 0;
+
+		& > div {
+			padding: 1px 2px;
+		}
+	}
+
+	&-head {
+		border-top-right-radius: 0.375rem;
+		border-top-left-radius: 0.375rem;
+
+		border-right: 1px solid $dark3;
+		border-left: 1px solid $dark3;
+		border-top: 1px solid $dark3;
+
+		background: $dark2;
+		line-height: 10px;
+		overflow: hidden;
+	}
+
+	&-item {
+		border-right: 1px solid $dark3;
+		border-left: 1px solid $dark3;
+
+		&:nth-child(2n) {
+			background: #0001;
+		}
+	}
+
+	&-footer {
+		border-bottom-right-radius: 0.375rem;
+		border-bottom-left-radius: 0.375rem;
+
+		border-bottom: 1px solid $dark3;
+		border-right: 1px solid $dark3;
+		border-left: 1px solid $dark3;
+
+		background: $dark2;
+	}
+
+	&-name {
+		text-align: left;
+	}
+}

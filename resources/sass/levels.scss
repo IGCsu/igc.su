@@ -1,44 +1,8 @@
 .levels {
 
-	&-text {
-
-		&-toggle {
-			color: #70aacf;
-			cursor: pointer;
-
-			&:hover {
-				color: #fff;
-			}
-		}
-
-		p {
-			margin-bottom: 15px;
-		}
-
-		.code {
-			border: 1px solid #0006;
-			background: $dark1;
-			border-radius: 5px;
-			padding: 0 5px;
-
-			i {
-				font-size: 63%;
-			}
-		}
-
-		div.code {
-			margin-bottom: 3px;
-			width: fit-content;
-			padding: 3px 10px;
-		}
-
-		span.code {
-			display: inline-block;
-			line-height: 12px;
-			padding: 1px 2px;
-		}
-
-	}
+	@import "levels/text";
+	@import "levels/roles";
+	@import "levels/members";
 
 	&-center {
 		text-align: center;
@@ -48,6 +12,15 @@
 		border-bottom: 1px solid #0003;
 		position: relative;
 		margin: 30px 60px;
+	}
+
+	&-clear {
+		background: #2f3136;
+		position: sticky;
+		margin: 0 -2px;
+		height: 20px;
+		z-index: 2;
+		top: 40px;
 	}
 
 }
