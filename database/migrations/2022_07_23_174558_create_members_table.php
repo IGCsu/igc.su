@@ -19,7 +19,7 @@ class CreateMembersTable extends Migration
             $table->text('discriminator');
             $table->text('avatar');
             $table->text('search');
-            $table->json('roles');
+            $table->text('roles');
             $table->string('headRole');
             $table->timestamps();
         });
