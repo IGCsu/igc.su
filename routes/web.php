@@ -14,9 +14,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function(){
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'page'])->name('welcome');
 
 Route::get('/law/{chapter?}', [\App\Http\Controllers\LawController::class, 'page'])->name('law');
 

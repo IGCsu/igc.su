@@ -1,0 +1,72 @@
+.welcome {
+
+	&-img img {
+		width: 100%;
+		max-width: 300px;
+		margin: 0 auto;
+		display: block;
+	}
+
+	&-text {
+		margin-top: 2rem;
+
+		font-size: 18px;
+		text-align: center;
+
+		a {
+			color: $blurple;
+
+			&:hover {
+				color: #eee;
+			}
+		}
+	}
+
+	&-table {
+		background: $dark1;
+		border: 1px solid #0004;
+		border-radius: 0.5rem;
+
+		table {
+			width: 100%;
+
+			th {
+				border-bottom: 1px dashed #0004;
+				padding: 4px 6px;
+			}
+
+			td {
+				padding: 4px 6px;
+				word-break: break-word;
+			}
+		}
+
+		&-name {
+			line-height: 1;
+
+			small {
+				display: block;
+				opacity: 0.5;
+			}
+
+			a {
+				display: block;
+				opacity: 1;
+				color: $blurple;
+
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+		}
+
+		&-status {
+			text-align: center;
+		}
+
+		&-desc {
+			white-space: pre-wrap;
+		}
+	}
+
+}
