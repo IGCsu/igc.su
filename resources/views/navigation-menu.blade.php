@@ -66,7 +66,8 @@
 							</x-slot>
 						</x-jet-dropdown>
 					@else
-						<a href="{{ route('login') }}" class="auth flex text-sm transition">Вход</a>
+{{--						<a href="{{ route('login') }}" class="auth flex text-sm transition">Вход</a>--}}
+                        <small>Авторизация не доступна</small>
 					@endauth
 				</div>
 			</div>
@@ -129,9 +130,10 @@
 				</div>
 			</div>
 		@else
-			<x-jet-responsive-nav-link href="{{ route('login') }}">
-				Вход
-			</x-jet-responsive-nav-link>
+            <small>Авторизация не доступна</small>
+{{--			<x-jet-responsive-nav-link href="{{ route('login') }}">--}}
+{{--				Вход--}}
+{{--			</x-jet-responsive-nav-link>--}}
 		@endauth
 
 	</div>

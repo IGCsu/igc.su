@@ -25,7 +25,8 @@
 			@auth
 				<a class="text-sm">{{ Auth::user()->name }}</a>
 			@else
-				<a href="{{ route('login') }}" class="text-sm">Вход</a>
+                <small>Авторизация не доступна</small>
+{{--				<a href="{{ route('login') }}" class="text-sm">Вход</a>--}}
 			@endauth
 		</div>
 

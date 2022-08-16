@@ -16,9 +16,9 @@ Route::get('/', function(){ return view('welcome'); });
 /**
  * Авторизация через Discord
  */
-Route::get('/login', [DiscordController::class, 'redirectToDiscord'])->name('login');
-Route::get('/auth/discord/callback', [DiscordController::class, 'handleDiscordCallback'])->name('handleDiscordCallback');
-Route::get('/closed', function(){ return view('closed'); })->name('closed');
+//Route::get('/login', [DiscordController::class, 'redirectToDiscord'])->name('login');
+//Route::get('/auth/discord/callback', [DiscordController::class, 'handleDiscordCallback'])->name('handleDiscordCallback');
+//Route::get('/closed', function(){ return view('closed'); })->name('closed');
 
 /**
  * Обновляет пользователей в базе и возвращает их
@@ -57,7 +57,7 @@ Route::name('elections.')->prefix('elections')->group(function(){
 /**
  * Бюджет сообщества
  */
-Route::middleware(['auth:sanctum', 'verified'])->get('/budget', [Controller::class, 'budget'])->name('budget');
+Route::get('/budget', [Controller::class, 'budget'])->name('budget');
 
 /**
  * Газета Diplomancy
