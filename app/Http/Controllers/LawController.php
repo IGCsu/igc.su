@@ -22,14 +22,14 @@ class LawController extends Controller
 	 * @var array
 	 */
 	public $chapters = [
-		'index' => ['icon' => null, 'title' => 'Index', 'desc' => ''],
-		'general' => ['icon' => 'star', 'title' => 'General', 'desc' => 'Общие положения, основные принципы сообщества.<br>Права и обязанности участников.'],
-		'social' => ['icon' => 'chat-heart', 'title' => 'Social', 'desc' => 'Требования и рекомендации к общению в чате.'],
-		'orders' => ['icon' => 'shield-exclamation', 'title' => 'Orders', 'desc' => 'Свод правил и пояснение к ним.'],
-		'management' => ['icon' => 'bank', 'title' => 'Management', 'desc' => 'Органы управления сообществом и структуры сообщества.'],
-		'bots' => ['icon' => 'gear', 'title' => 'Bots', 'desc' => 'О функциональности и возможностях ботов.'],
-		'roles' => ['icon' => 'gem', 'title' => 'Roles', 'desc' => 'Описание ролей и принципы их проектирования.'],
-		'channels' => ['icon' => 'hash', 'title' => 'Channels', 'desc' => 'Описание каналов и категорий.']
+		'index' => ['status' => true, 'icon' => null, 'title' => 'Index', 'desc' => ''],
+		'general' => ['status' => true, 'icon' => 'star', 'title' => 'General', 'desc' => 'Общие положения, основные принципы сообщества.<br>Права и обязанности участников.'],
+		'social' => ['status' => true, 'icon' => 'chat-heart', 'title' => 'Social', 'desc' => 'Требования и рекомендации к общению в чате.'],
+		'orders' => ['status' => true, 'icon' => 'shield-exclamation', 'title' => 'Orders', 'desc' => 'Свод правил и пояснение к ним.'],
+		'management' => ['status' => true, 'icon' => 'bank', 'title' => 'Management', 'desc' => 'Органы управления сообществом и структуры сообщества.'],
+		'bots' => ['status' => true, 'icon' => 'gear', 'title' => 'Bots', 'desc' => 'О функциональности и возможностях ботов.'],
+		'roles' => ['status' => false, 'icon' => 'gem', 'title' => 'Roles', 'desc' => 'Описание ролей и принципы их проектирования.'],
+		'channels' => ['status' => false, 'icon' => 'hash', 'title' => 'Channels', 'desc' => 'Описание каналов и категорий.']
 	];
 
 	/**
@@ -164,8 +164,8 @@ class LawController extends Controller
 
 		$data = [];
 		foreach($lawRaw as $lawRow){
-			$lawRow->level = count(explode('.', $lawRow->number));
-
+			$lawRow->field = explode('.', $lawRow->number);
+			$lawRow->level = count($lawRow->field);
 			$lawRow->text = $this->replace($lawRow->text, $replaceOption);
 
 			$data[$lawRow->number] = $lawRow;

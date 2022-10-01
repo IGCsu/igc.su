@@ -19,6 +19,19 @@
 
         &-3 {
             margin: 2rem 5% 0.5rem;
+
+
+
+			&.law-article-text-order {
+				margin: 0.5rem 5% 0.5rem;
+
+				small {
+					display: inline-block;
+					margin-right: 0.25rem;
+					opacity: 0.5;
+					font-size: 100%;
+				}
+			}
         }
 
         &-4 {

@@ -67,3 +67,5 @@ const app = new Vue({
 });
 
 import './loader';
+
+require('./law');

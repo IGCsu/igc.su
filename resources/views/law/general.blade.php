@@ -8,17 +8,22 @@
 
         @include('law.components.nav')
 
-        <div class="law-article">
+		<div class="law-article">
 
-            <div class="law-article-head"></div>
+			<div class="law-article-head">
+				<div></div>
+			</div>
 
-            <div class="law-article-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci beatae, consequatur dolore dolorum ducimus enim est ex in iure laboriosam minima, nam nobis optio praesentium qui rem suscipit temporibus.
-            </div>
+			<div class="law-article-text law-general">
+				@foreach($data as $lawRow)
+					<div class="law-article-text-paragraph law-article-text-{{ $lawRow->level }}" field="{{ $lawRow->number }}">
+						<small>{{ $lawRow->number }}</small>{!! $lawRow->text !!}</div>
+				@endforeach
+			</div>
 
-            <div class="law-article-footer"></div>
+			<div class="law-article-footer"></div>
 
-        </div>
+		</div>
 
     </div>
 

@@ -22,7 +22,10 @@
         foreach($data as $lawRow){
             if($lawRow->number !== $c && strripos($lawRow->number, $c.'.') === false) continue;
 
-            $colors[$c]['html'] .= '<div class="law-article-text-paragraph law-article-text-'.$lawRow->level.'" field="'.$lawRow->number.'"><small>'.$lawRow->number.'</small>'.$lawRow->text.'</div>';
+            $colors[$c]['html'] .= '<div class="law-article-text-paragraph law-article-text-'.$lawRow->level.'" field="'.$lawRow->number.'">'.
+				'<small>'.$lawRow->number.'</small>'.
+				'<span>'.$lawRow->text.'</span>'.
+			'</div>';
 
             if(preg_match('/style="color:\s(#[abcdef0-9]+)">/i', $lawRow->text, $matches)){
                 $colors[$c]['colors'][] = $matches[1];

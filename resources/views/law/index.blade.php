@@ -16,7 +16,7 @@
 
             @foreach($chapters as $key => $chapter)
                 @if($chapter['icon'])
-                    <a class="law-index-item" href="{{ route('law', ['chapter' => $key]) }}">
+                    <a class="law-index-item {{ $chapter['status'] ? '' : 'law-index-disable' }}" href="{{ route('law', ['chapter' => $key]) }}">
                         <i class="law-index-icon bi bi-{{ $chapter['icon'] }}"></i>
                         <div class="law-index-title">{{ $chapter['title'] }}</div>
                         <div class="law-index-desc">{!! $chapter['desc'] !!}</div>

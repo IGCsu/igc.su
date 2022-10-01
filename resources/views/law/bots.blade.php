@@ -17,7 +17,7 @@
             <div class="law-article-text law-bots">
                 @foreach($data as $lawRow)
                     <div class="law-article-text-paragraph law-article-text-{{ $lawRow->level }}" field="{{ $lawRow->number }}">
-                        <small>{{ $lawRow->number }}</small>{!! $lawRow->text !!}</div>
+                        <small>{{ $lawRow->number }}</small><span>{!! $lawRow->text !!}</span></div>
                 @endforeach
             </div>
 
