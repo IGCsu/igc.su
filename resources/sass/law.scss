@@ -5,6 +5,14 @@
 
         font-size: 18px;
         text-align: center;
+
+		a {
+			color: $blurple;
+
+			&:hover {
+				color: #eee;
+			}
+		}
     }
 
     &-nav {

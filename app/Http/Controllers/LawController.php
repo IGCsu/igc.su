@@ -23,7 +23,7 @@ class LawController extends Controller
 	 */
 	public $chapters = [
 		'index' => ['status' => true, 'icon' => null, 'title' => 'Index', 'desc' => ''],
-		'general' => ['status' => true, 'icon' => 'star', 'title' => 'General', 'desc' => 'Общие положения, основные принципы сообщества.<br>Права и обязанности участников.'],
+		'general' => ['status' => false, 'icon' => 'star', 'title' => 'General', 'desc' => 'Общие положения, основные принципы сообщества.<br>Права и обязанности участников.'],
 		'social' => ['status' => true, 'icon' => 'chat-heart', 'title' => 'Social', 'desc' => 'Требования и рекомендации к общению в чате.'],
 		'orders' => ['status' => true, 'icon' => 'shield-exclamation', 'title' => 'Orders', 'desc' => 'Свод правил и пояснение к ним.'],
 		'management' => ['status' => true, 'icon' => 'bank', 'title' => 'Management', 'desc' => 'Органы управления сообществом и структуры сообщества.'],
