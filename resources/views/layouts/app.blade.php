@@ -26,13 +26,23 @@
 
     @include('components.loader')
 
-    <div id="app">
-        @include('components.navbar')
+	@hasSection('vue-disable')
+		<div id="app">
+			@include('components.navbar')
+		</div>
 
-        <main>
-            @yield('content')
-        </main>
-    </div>
+		<main>
+			@yield('content')
+		</main>
+	@else
+		<div id="app">
+			@include('components.navbar')
+
+			<main>
+				@yield('content')
+			</main>
+		</div>
+	@endif
 
 	<script src="{{ asset('js/app.js') }}"></script>
 

@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 
@@ -65,6 +66,10 @@ class LawController extends Controller
 			return $this->raw($date);
 		}
 
+		if($chapter == 'old'){
+			return $this->old();
+		}
+
 		if(!View::exists('law.'.$chapter)){
 			return redirect()->route('law', $date ? ['date' => $date] : null);
 		}
@@ -97,6 +102,88 @@ class LawController extends Controller
 		return view('law.raw', [
 			'chapters' => $this->chapters
 		]);
+	}
+
+	/**
+	 * @return Application|Factory|\Illuminate\Contracts\View\View
+	 */
+	public function old()
+	{
+		$guild = [
+			'chapters' => $this->chapters,
+			'channels' => $this->chapters,
+			'roles' => $this->roles
+		];
+
+		$versions = DB::connection('old')->table('rules')->orderBy('id', 'desc')->get();
+
+		$description = '';
+
+		$v = $versions[0];
+		if(!empty($_GET['v'])){
+			foreach($versions as $version){
+				if($version->id != $_GET['v']) continue;
+				$v = $version;
+				break;
+			}
+		}
+
+		if(!empty($_GET['f'])){
+
+			$data = json_decode($v->data, true);
+
+			if(!empty($data['article'][$_GET['f']])){
+				$type = 'article';
+			}elseif(!empty($data['rules'][$_GET['f']])){
+				$type = 'rules';
+			}else{
+				$type = '';
+			}
+
+			if($type != ''){
+				$selectText = $this->fix($data[$type][$_GET['f']], $guild['channels'], $guild['roles']);
+				$description = $_GET['f'].': '.$selectText;
+
+				$minor = $this->getMinor($_GET['f'], $data[$type], $guild['channels'], $guild['roles']);
+
+				$qty = count($minor);
+				for($i=1; $i <= $qty; $i++){
+					$description .= PHP_EOL.($i == $qty ? '└' : '├').' '.$minor[$i-1]['key'].': '.mb_strimwidth($minor[$i-1]['text'], 0, 20, '...');
+				}
+
+			}
+
+		}
+
+		if(!empty($_GET['j']) && $_GET['j']){
+			$data = [];
+
+			try{
+				if(empty($_GET['f'])){
+					foreach(json_decode($v->data, true) as $cat){
+						foreach($cat as $key => $item) $data[$key] = $item;
+					}
+				}else{
+					$data = [
+						'key' => $_GET['f'],
+						'text' => $selectText,
+						'minor' => $minor
+					];
+				}
+			}catch(\Exception $e){
+				echo abort('404');
+			}
+
+
+			header('Content-Type: application/json');
+			echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+			exit;
+		}
+
+		$guild['description'] = $description;
+		$guild['versions'] = $versions;
+
+		return view('law.old', $guild);
 	}
 
 
