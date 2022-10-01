@@ -14,7 +14,7 @@
 				<div></div>
 			</div>
 
-			<div class="law-article-text law-orders">
+			<div class="law-article-text law-management">
 				@foreach($data as $lawRow)
 					<div class="law-article-text-paragraph law-article-text-{{ $lawRow->level }}" field="{{ $lawRow->number }}">
 						<small>{{ $lawRow->number }}</small>{!! $lawRow->text !!}</div>
