@@ -22,7 +22,9 @@
         width: 107px;
         height: 124px;
 
-        animation: loaderIcon 600ms cubic-bezier(1, 0, 1, 1);
+		&.enabled {
+			animation: loaderIcon 600ms cubic-bezier(1, 0, 1, 1);
+		}
 
         svg {
             position: absolute;
