@@ -20,6 +20,8 @@ Route::get('/law/{chapter?}', [\App\Http\Controllers\LawController::class, 'page
 
 Route::get('/levels', [\App\Http\Controllers\LevelsController::class, 'page'])->name('levels');
 
+Route::get('/election/{date}', [\App\Http\Controllers\ElectionController::class, 'page'])->name('election');
+
 //Route::post('/tokens/create', function (Request $request) {
 //    $token = $request->user()->createToken('admin');
 //

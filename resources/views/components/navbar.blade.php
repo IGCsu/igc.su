@@ -1,3 +1,7 @@
+<?php
+	$elections = \App\Models\Election::all();
+?>
+
 <b-navbar toggleable="lg" type="dark">
 
     <div class="container">
@@ -15,10 +19,12 @@
                 <b-nav-item href="{{ route('levels') }}">Уровни</b-nav-item>
 
                 <b-nav-item-dropdown text="Выборы" right>
-                    <b-dropdown-item href="#">2022-03</b-dropdown-item>
-                    <b-dropdown-item href="#">2022-03</b-dropdown-item>
-                    <b-dropdown-item href="#">2022-03</b-dropdown-item>
-                    <b-dropdown-item href="#">2022-03</b-dropdown-item>
+					@foreach($elections as $e => $election)
+						<b-dropdown-item href="{{ route('election', $election->date) }}">
+							<small>{{ $election->date }}</small>
+							{{ $election->title }}
+						</b-dropdown-item>
+					@endforeach
                 </b-nav-item-dropdown>
 
             </b-navbar-nav>
