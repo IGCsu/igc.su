@@ -106,10 +106,10 @@ class MemberLevel extends Model
 
 	/**
 	 * Возвращает роль пользователя
-	 * @param array $roles
+	 * @param $roles
 	 * @return object|null
 	 */
-	public function getRole(array $roles): ?object
+	public function getRole($roles): ?object
 	{
 		if(isset($this->dataLevel['role'])) return $this->dataLevel['role'];
 

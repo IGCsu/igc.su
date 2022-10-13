@@ -12,7 +12,7 @@
     @yield('meta')
 
     @hasSection('title')
-        <title>@yield('title') | IGC new</title>
+        <title>@yield('title') | IGC</title>
     @else
         <title>IGC new</title>
     @endif

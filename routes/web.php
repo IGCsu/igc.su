@@ -17,10 +17,15 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'page'])->name('welcome');
 
 Route::get('/law/{chapter?}', [\App\Http\Controllers\LawController::class, 'page'])->name('law');
+Route::get('/rules', function () {
+	return redirect(\route('law'));
+});
 
 Route::get('/levels', [\App\Http\Controllers\LevelsController::class, 'page'])->name('levels');
 
-Route::get('/election/{date}', [\App\Http\Controllers\ElectionController::class, 'page'])->name('election');
+Route::get('/election/{date}', [\App\Http\Controllers\ElectionController::class, 'page'])->name('election.page');
+Route::get('/election/{date}/registration', [\App\Http\Controllers\ElectionController::class, 'registration'])->name('election.registration');
+Route::get('/election/{date}/candidate/{id}', [\App\Http\Controllers\ElectionController::class, 'candidate'])->name('election.candidate');
 
 //Route::post('/tokens/create', function (Request $request) {
 //    $token = $request->user()->createToken('admin');
@@ -34,6 +39,8 @@ Route::get('/election/{date}', [\App\Http\Controllers\ElectionController::class,
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/auth/discord/callback', [AuthController::class, 'callback'])->name('auth.callback');
-Route::get('/auth/closed', function(){ return view('welcome'); })->name('auth.closed');
+Route::get('/auth/closed', function () {
+	return view('welcome');
+})->name('auth.closed');
 
 Route::post('/membersUpdate', [\App\Http\Controllers\MemberController::class, 'fetch'])->name('membersUpdate');

@@ -115,7 +115,11 @@ class LawController extends Controller
 			'roles' => $this->roles
 		];
 
-		$versions = DB::connection('old')->table('rules')->orderBy('id', 'desc')->get();
+		$versions = DB::connection('old')
+			->table('rules')
+			->where('status','released')
+			->orderBy('id', 'desc')
+			->get();
 
 		$description = '';
 

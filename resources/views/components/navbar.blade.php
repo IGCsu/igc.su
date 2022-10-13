@@ -20,7 +20,7 @@
 
                 <b-nav-item-dropdown text="Выборы" right>
 					@foreach($elections as $e => $election)
-						<b-dropdown-item href="{{ route('election', $election->date) }}">
+						<b-dropdown-item href="{{ route('election.page', $election->date) }}">
 							<small>{{ $election->date }}</small>
 							{{ $election->title }}
 						</b-dropdown-item>
