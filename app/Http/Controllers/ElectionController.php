@@ -24,40 +24,42 @@ class ElectionController extends Controller
 	 */
 	public function page(Request $request, string $date = '')
 	{
-		$election = Election::firstWhere('date', $date);
+		if (!Auth::check()) {
+			return redirect()->route('login');
+		}
 
-		if (!$election) {
+		$data = (object)[
+			'user' => Auth::user()->discord_id
+		];
+
+		$data->election = Election::firstWhere('date', $date);
+
+		if (!$data->election) {
 			return redirect()->route('election');
 		}
 
-		$candidates = ElectionCandidate::where('election_id', $election->id)->get()->keyBy('member_id');
-		$members = Member::all()->keyBy('id');
+		$data->candidates = ElectionCandidate::where('election_id', $data->election->id)->get()->keyBy('member_id');
+		$data->members = Member::all()->keyBy('id');
 
-		foreach ($candidates as $c => $candidate) {
-			if (empty($members[$c])) {
-				unset($candidates[$c]);
+		foreach ($data->candidates as $c => $candidate) {
+			if (empty($data->members[$c])) {
+				unset($data->candidates[$c]);
 				continue;
 			}
 
-			$candidate->member = $members[$c];
+			$candidate->member = $data->members[$c];
 		}
 
-		/** @var $level MemberLevel */
-		$level = MemberLevel::find(Auth::user()->discord_id);
-		$levelRole = empty($level) ? null : $level->getRole(RoleLevel::orderBy('value', 'desc')->get());
-		$role = empty($levelRole) ? null : Role::find($levelRole->id);
+		$data->needRole = Role::find('575721274693910528');
 
-		$needRole = Role::find('575721274693910528');
+		/** @var MemberLevel */
+		$data->level = MemberLevel::find($data->user);
+		$levelRole = empty($data->level) ? null : $data->level->getRole(RoleLevel::orderBy('value', 'desc')->get());
+		$data->role = empty($levelRole) ? null : Role::find($levelRole->id);
 
-		return view('election.page', [
-			'election' => $election,
-			'candidates' => $candidates,
-			'members' => $members,
-			'level' => $level,
-			'needRole' => $needRole,
-			'role' => $role,
-			'access' => $this->getRegistrationAccess($level, $levelRole)
-		]);
+		$data->access = $this->getRegistrationAccess($data->level, $levelRole);
+
+		return view('election.page', (array)$data);
 	}
 
 	/**
@@ -68,6 +70,12 @@ class ElectionController extends Controller
 	 */
 	public function registration(Request $request, string $date = '')
 	{
+		if (!Auth::check()) {
+			return redirect()->route('login');
+		}
+
+		$user = Auth::user()->discord_id;
+
 		$election = Election::firstWhere('date', $date);
 
 		if (!$election) {
@@ -75,26 +83,27 @@ class ElectionController extends Controller
 		}
 
 		/** @var $level MemberLevel */
-		$level = MemberLevel::find(Auth::user()->discord_id);
+		$level = MemberLevel::find($user);
 		$levelRole = empty($level) ? null : $level->getRole(RoleLevel::orderBy('value', 'desc')->get());
 
 		if (!$this->getRegistrationAccess($level, $levelRole)->result) {
 			return redirect()->route('election.page', $date);
 		}
 
-		$candidate = ElectionCandidate::firstWhere([
-			['member_id', Auth::user()->discord_id],
+		$candidate = ElectionCandidate::where([
+			['member_id', $user],
 			['election_id', $election->id]
-		]);
+		])->firstOrNew();
 
-		if (!empty($candidate)) {
-			return redirect()->route('election.candidate', $date, Auth::user()->discord_id);
+		if (!empty($candidate->id)) {
+			return redirect()->route('election.candidate', $date, $user);
 		}
 
 		return view('election.candidate', [
 			'election' => $election,
-			'candidate' => new ElectionCandidate(),
-			'member' => Member::find(Auth::user()->discord_id)
+			'candidate' => $candidate,
+			'member' => Member::find($user),
+			'me' => $user
 		]);
 	}
 
@@ -107,6 +116,12 @@ class ElectionController extends Controller
 	 */
 	public function candidate(Request $request, string $date = '', string $id = '')
 	{
+		if (!Auth::check()) {
+			return redirect()->route('login');
+		}
+
+		$user = Auth::user()->discord_id;
+
 		$election = Election::firstWhere('date', $date);
 
 		if (!$election) {
@@ -127,7 +142,8 @@ class ElectionController extends Controller
 		return view('election.candidate', [
 			'election' => $election,
 			'candidate' => $candidate,
-			'member' => $member
+			'member' => $member,
+			'me' => $user
 		]);
 	}
 

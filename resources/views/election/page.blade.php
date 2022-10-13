@@ -8,7 +8,7 @@
 
 		<span class="election-page-title">Ваша кандидатура</span>
 		<div class="election-page-me election-page-block">
-			@empty($candidate[Auth::user()->discord_id])
+			@empty($candidate[$user])
 				<div class="row">
 					<div class="col-lg-9 election-page-terms">
 						Чтобы подать кандидатуру, необходимо соответствовать следующим условиям:
@@ -78,7 +78,7 @@
 				</div>
 			@else
 				<election-candidate
-					v-bind:candidate="{{ $candidate[Auth::user()->discord_id] }}"
+					v-bind:candidate="{{ $candidate[$user] }}"
 				></election-candidate>
 			@endempty
 		</div>
@@ -86,7 +86,7 @@
 		<span class="election-page-title">Кандидаты на выборы</span>
 		<div class="election-page-candidates election-page-block">
 			@foreach($candidates as $c => $candidate)
-				@if($c !== Auth::user()->discord_id)
+				@if($c !== $user)
 					<election-candidate
 						v-bind:candidate="{{ $candidate }}"
 					></election-candidate>

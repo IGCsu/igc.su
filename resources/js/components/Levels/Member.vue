@@ -9,7 +9,7 @@
 					</div>
 					<div class="levels-members-name col">
 						<img
-							:src="'https://cdn.discordapp.com/' + member.avatar"
+							:src="this.AVATAR_LINK + member.avatar"
 							:alt="member.name + '#' + member.id"
 							:user="member.id"
 							@error="$emit('memberUpdate', $event)"
